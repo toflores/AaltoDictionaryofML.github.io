@@ -11422,18 +11422,18 @@ text={MM}
 
 \newglossaryentry{geometricmargin} 
 {name={geometric margin}, 
-description={The building block of a \gls{svm} solution is based on the definition of a geometric margin. The geometric margin $\rho_h(x)$ of a linear classifier
-$h: x \mapsto w \cdot x + b$ at some point $x$, is its distance to the hyperplane defined by the linear equation $w \cdot x + b = 0$. Where  $\rho_h(x)$: 
+description={The foundation of a \gls{svm} solution is based on the definition of a geometric margin. The geometric margin $\rho_h(x)$ of a linear classifier
+$h: x \mapsto w \cdot x + b$ at a specified point $x$, is defined as the distance from the point $x$ to the hyperplane defined by the linear equation $w \cdot x + b = 0$. Formally, $\rho_h(x)$: 
 \begin{equation}
     \rho_h(x) = \frac{|w \cdot x + b|}{\|w\|_2}.
     \label{eq:geometric_margin_point}
 \end{equation}
-Given a sample $S = (x_1, \ldots, x_m)$, the geometric margin of linear classifier is the minimum geometric margin of the points in the sample, that is 
+Given a sample $S = (x_1, \ldots, x_m)$, the geometric margin of the linear classifier is the minimum geometric margin of all points in the sample, that is: 
 \begin{equation}
     \rho_h = \min_{i \in [m]} \rho_h(x_i),
     \label{eq:geometric_margin_sample}
 \end{equation}
-A linear classifier such as \gls{svm} attains its solution from the separating hyperplane $w \cdot x + b = 0$ with the largest geometric margin, which is known as 
+A linear classifier such as \gls{svm} attains its optimal solution from the separating hyperplane $w \cdot x + b = 0$ with the largest geometric margin, which is known as 
 the maximum-margin hyperplane.  
 \cite{mohri2018foundations}
  \\ 
