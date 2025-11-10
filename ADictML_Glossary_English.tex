@@ -1108,6 +1108,7 @@ description={A \gls{function}\index{continuous} $f: \mathbb{R}^{\nrfeatures} \to
 
 
 
+
 \newglossaryentry{optproblem}
 {name={optimization problem}, 
 	description={An\index{optimization problem} optimization problem is a mathematical 
@@ -3679,7 +3680,7 @@ text={NLP},
  		$f: \mathbb{R}^{\nrfeatures} \rightarrow \mathbb{R}$ is a \gls{measurable} 
  		\gls{function} which takes on only finite many values. In other words, 
  		$$f(\featurevec) = \sum_{\clusteridx=1}^{\nrcluster} \alpha_{\clusteridx} \mathcal{I}^{(\cluster^{(\clusteridx)})}(\featurevec),$$ 
- 			with the indicator \gls{function} $\indicatorfunc{\cluster}$ of a 
+ 			with the indicator \gls{function} $\mathcal{I}^{(\cluster)}$ of a 
  			subset $\cluster \subset \mathbb{R}^{\nrfeatures}$ and 
  			arbitrary coefficents $\alpha_{1},\ldots,\alpha_{\nrcluster} \in \mathbb{R}$. 
  			The subsets $\cluster^{(1)},\ldots,\cluster^{(\nrcluster)}$ in the above 
@@ -6422,7 +6423,7 @@ out of a \gls{model} $\hypospace$ by minimizing the average \gls{loss}
  		See also: \gls{boosting}, \gls{adaboost}, \gls{gd}.},
  	first={Gradient Boosting}, 
  	text={Gradient Boosting}
- }
+} 
 
 	
 \newglossaryentry{gtv}
@@ -6491,8 +6492,8 @@ out of a \gls{model} $\hypospace$ by minimizing the average \gls{loss}
 }
 	
 	
- \newglossaryentry{backdoor}
- {name={backdoor}, 
+\newglossaryentry{backdoor}
+{name={backdoor}, 
  	description={A\index{backdoor} backdoor attack refers to the intentional 
  	             manipulation of a \gls{ml} \gls{training} process. The attacker 
  				 might perturb the \gls{trainset} (i.e., through \gls{datapoisoning}) 
@@ -6505,11 +6506,11 @@ out of a \gls{model} $\hypospace$ by minimizing the average \gls{loss}
  				 trigger pattern $\mathcal{T}$ and corresponding anomalous \gls{prediction} 
  				 $\learnthypothesis(\featurevec)$, for $\featurevec \in \mathcal{T}$ 
  				 are only known to the attacker.
- 				\\
+				\\
  		See also:  \gls{datapoisoning}, \gls{attack}, \gls{datapoisoning}.},
- 	first={backdoor},
- 	text={backdoor} 
- }
+	first={backdoor},
+	text={backdoor} 
+}
 
 
 \newglossaryentry{clustasspt}
@@ -7462,7 +7463,7 @@ information theory and statistics \cite{coverthomas,Kullback68informationtheory,
 		of \gls{erm} that learns a \gls{hypothesis} map $\phi_{\rm agg} \in \hypospace$ from 
 		a meta \gls{model} $\hypospace$. The \gls{hypothesis} $\phi_{\rm agg}$ is applied to the 
 		transformed \gls{featurevec} $$\featuremapvec(\featurevec)= \big( \learnthypothesis^{(1)}(\featurevec), 
-       \ldots, \learnthypothesis^{(\numlearners)}(\featurevec) \big)^{T}.$$
+		\ldots, \learnthypothesis^{(\numlearners)}(\featurevec) \big)^{T}.$$
        \begin{figure}[htbp]
 		\begin{center}
 		\begin{tikzpicture}[
@@ -7740,7 +7741,7 @@ description={Consider the \gls{labelspace} is $\labelspace=\{-1,1\}$ and a \gls{
  description={See: \gls{bagging}\index{bootstrap aggregation}.},
  first={bootstrap aggregation},
  text={bootstrap aggregation} 
-}	
+}
 
 \newglossaryentry{decisionregion}
 {name={decision region}, plural={decision regions}, 
@@ -7764,7 +7765,7 @@ description={Consider the \gls{labelspace} is $\labelspace=\{-1,1\}$ and a \gls{
 	firstplural={base learners},
 	plural={base learners},
 	text={base learner} 
-}	
+}
 
 
 \newglossaryentry{decisionboundary}
@@ -9363,7 +9364,7 @@ average squared \gls{eucliddist} to the nearest \glspl{clustercentroid} as a mea
 		(approximately) linearly separated. For an \gls{ml} application where the categories are not 
 		derived from a \gls{kernel}.
 				\\
-		See also: \gls{classification}, \gls{linmodel}, \gls{classifier}, \gls{hingeloss}.},
+		See also: \gls{classification}, \gls{linmodel}, \gls{classifier}, \gls{hingeloss},\gls{geometricmargin} },
 	first={support vector machine (SVM)},
 	text={SVM} 
 }
@@ -11417,3 +11418,26 @@ text={MM}
 	type=math, 
     text={Markov's inequality}  
 }
+
+
+\newglossaryentry{geometricmargin} 
+{name={geometric margin}, 
+description={The building block of a \gls{svm} solution is based on the definition of a geometric margin. The geometric margin $\rho_h(x)$ of a linear classifier
+$h: x \mapsto w \cdot x + b$ at some point $x$, is its distance to the hyperplane defined by the linear equation $w \cdot x + b = 0$. Where  $\rho_h(x)$: 
+\begin{equation}
+    \rho_h(x) = \frac{|w \cdot x + b|}{\|w\|_2}.
+    \label{eq:geometric_margin_point}
+\end{equation}
+Given a sample $S = (x_1, \ldots, x_m)$, the geometric margin of linear classifier is the minimum geometric margin of the points in the sample, that is 
+\begin{equation}
+    \rho_h = \min_{i \in [m]} \rho_h(x_i),
+    \label{eq:geometric_margin_sample}
+\end{equation}
+A linear classifier such as \gls{svm} attains its solution from the separating hyperplane $w \cdot x + b = 0$ with the largest geometric margin, which is known as 
+the maximum-margin hyperplane.  
+\cite{mohri2018foundations}
+ \\ 
+ 			  See also: \gls{svm}, \gls{classifier}.}, 
+  first = {geometric margin}, 
+  text = {geometric margin}
+ }
