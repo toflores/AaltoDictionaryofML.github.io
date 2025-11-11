@@ -11422,57 +11422,79 @@ text={MM}
     first={Markov's inequality},
 	type=math, 
     text={Markov's inequality}  
-}	
+}
 
 
-\newglossaryentry{geometricmargin} 
-{name={geometric margin}, 
-description={The foundation of a \gls{svm} solution is based on the definition of a geometric margin. The geometric margin $\rho_h(x)$ of a linear \gls{classifier}
-$h: x \mapsto w \cdot x + b$ at a specified \gls{datapoint} $x$, is defined as the distance from the \gls{datapoint} $x$ to the hyperplane defined by the linear equation $w \cdot x + b = 0$. Formally, $\rho_h(x)$: 
-\begin{equation}
-    \rho_h(x) = \frac{|w \cdot x + b|}{\|w\|_2}.
-    \label{eq:geometric_margin_point}
-\end{equation}
-Given a sample $S = (x_1, \ldots, x_m)$, the geometric margin of the linear classifier is the \gls{minimum} geometric margin of all \gls{datapoint}s in the sample, that is: 
-\begin{equation}
-    \rho_h = \min_{i \in [m]} \rho_h(x_i),
-    \label{eq:geometric_margin_sample}
-\end{equation}
-A linear classifier such as \gls{svm} attains its optimal solution from the separating hyperplane $w \cdot x + b = 0$ with the largest geometric margin, which is known as 
-the \gls{maximum}-margin hyperplane.  
-\cite{mohri2018foundations}
- \\
- \begin{figure}[H]
-	\begin{center}
-    \begin{tikzpicture}[scale = 0.8, x=1cm, y=1cm, >=stealth]
-        % Axes
-        \draw[->, thick] (-1,0) -- (5,0) node[right] {$x_1$};
-        \draw[->, thick] (0,-4) -- (0,5) node[above] {$x_2$};
-        % Hyperplane: w·x + b = 0
-        \draw[thick, black] (-0.5,2.5) -- (4.5,-2.5) node[below right] {Hyperplane $w \cdot x + b = 0$};
-        % Margin lines (parallel to hyperplane)
-        \draw[dashed, gray, thick] (-0.5,3.5) -- (4.5,-1.5);
-        \draw[dashed, gray, thick] (-0.5,1.5) -- (4.35,-3.5);
-        % Margin annotation (distance = 2/||w||)
-		\draw[->, thick, blue!70!black] (1,1) -- ++(1,1) node[midway, above right] {$\vec w$};
-		\coordinate (Lm) at ($(1,1)+(-0.5,-0.5)$); % point on lower margin
-    	\coordinate (Um) at ($(1,1)+(0.5,0.5)$);  
-		\draw[<->, blue, very thick] (Lm) -- (Um) node[midway, right] {$\displaystyle \frac{2}{\|\mathbf w\|}$};
-        % Positive class points (+1)
-        \foreach \x/\y in {1/3.1, 1.6/2.8, 2.4/2.7, 3.2/2.4}
-      		\fill[green!70!black] (\x,\y) circle (2.5pt);
-        % Negative class points (-1)
-        \foreach \x/\y in {1/-1.2, 1.5/-1.0, 0/-0.8, -1/-0.7}
-      		\fill[red!70!black] (\x,\y) circle (2.5pt);
-        % Labels for regions
-        \node[green!50!black] at (4,3.4) {$y=+1$ region};
-    	\node[red!60!black] at (2.0,-3.2) {$y=-1$ region};
-    \end{tikzpicture}
-	\end{center}
-    \caption{Support Vector Machine decision boundary with margin width $\tfrac{2}{\|w\|}$.}
-	\label{fig:geometric-margin}
-	\end{figure}
- 		See also: \gls{svm}, \gls{classifier}.}, 
-  first = {geometric margin}, 
-  text = {geometric margin}
- }
+\newglossaryentry{chebyshevsinequality}
+{name={Chebyshev's inequality},
+     description={\index{Chebyshev's inequality} Chebyshev's inequality is a basic \gls{concentrationinequ} that provides an upper bound on the \gls{probability} that a \gls{rv} deviates from its \gls{mean} by more than some threshold. Formally, if $x$ is a real-valued \gls{rv} with \gls{expectation} $\mu = \expect\{x\}$ and \gls{variance} $\sigma^2$, Chebyshev's inequality states that
+        \begin{equation}
+            \prob{|x - \mu | \geq t } \leq \frac{\sigma^2}{t^2} \qquad \forall t > 0.
+            \label{eq:chebyshevsinequality}
+        \end{equation}
+        \begin{figure}[ht]
+        \centering
+        \begin{tikzpicture}
+          \begin{groupplot}[
+            group style={group size=3 by 1, horizontal sep=10mm},
+            width=5.2cm, height=3.6cm,
+            samples=250,
+            axis lines=left,
+            xlabel={$\eta$},
+            x label style={at={(axis description cs:1,0)}, anchor=west},
+            xtick=\empty, ytick=\empty,
+            ymin=0, ymax=0.45,
+            domain=-6:6,
+            enlargelimits=false
+          ]
+            \nextgroupplot[
+              clip=false,
+              title={$x_1 \sim \mathcal{N}(\mu,\sigma_1^2)$},
+              xtick={-1.5,0,1.5},
+              xticklabels={$-t_1$,$\mu$,$t_1$},
+              ylabel={$p^{(x_1)}(\eta)$},
+              ylabel style={rotate=0, at={(axis description cs:0,1.02)}, anchor=south}
+            ]
+              \addplot[name path=pdfA, black, very thick] {exp(-0.5*x^2)/sqrt(2*pi)};
+              \addplot[name path=axisA, draw=none] {0};
+              \addplot[red!70, opacity=0.25] fill between[of=pdfA and axisA, soft clip={domain=-6:-1.5}];
+              \addplot[red!70, opacity=0.25] fill between[of=pdfA and axisA, soft clip={domain=1.5:6}];
+              \node[anchor=north] at (axis description cs:0.5,-0.24) {(a)};
+            \nextgroupplot[
+              clip=false,
+              title={$x_1 \sim \mathcal{N}(\mu,\sigma_1^2)$},
+              xtick={-2,0,2},
+              xticklabels={$-t_2$,$\mu$,$t_2$},
+              ylabel={$p^{(x_1)}(\eta)$},
+              ylabel style={rotate=0, at={(axis description cs:0,1.02)}, anchor=south}
+            ]
+              \addplot[name path=pdfB, black, very thick] {exp(-0.5*x^2)/sqrt(2*pi)};
+              \addplot[name path=axisB, draw=none] {0};
+              \addplot[red!70, opacity=0.25] fill between[of=pdfB and axisB, soft clip={domain=-6:-2}];
+              \addplot[red!70, opacity=0.25] fill between[of=pdfB and axisB, soft clip={domain=2:6}];
+              \node[anchor=north] at (axis description cs:0.5,-0.24) {(b)};
+            \nextgroupplot[
+              clip=false,
+              title={$x_2 \sim \mathcal{N}(\mu,\sigma_2^2)$},
+              xtick={-1.5,0,1.5},
+              xticklabels={$-t_1$,$\mu$,$t_1$},
+              ylabel={$p^{(x_2)}(\eta)$},
+              ylabel style={rotate=0, at={(axis description cs:0,1.02)}, anchor=south}
+            ]
+              \addplot[name path=pdfC, black, very thick] {exp(-0.5*(x/2)^2)/(2*sqrt(2*pi))};
+              \addplot[name path=axisC, draw=none] {0};
+              \addplot[red!70, opacity=0.25] fill between[of=pdfC and axisC, soft clip={domain=-6:-1.5}];
+              \addplot[red!70, opacity=0.25] fill between[of=pdfC and axisC, soft clip={domain=1.5:6}];
+              \node[anchor=north] at (axis description cs:0.5,-0.24) {(c)};
+          \end{groupplot}
+        \end{tikzpicture}
+        \caption{Illustration of the \glspl{probability} of the tail \glspl{event} $\{|x_i-\mu| \geq t_j\}$, where $i,j \in \{1,2\}$. Here, $x_1$ and $x_2$ are \glspl{normaldist} with \gls{pdf} $p^{(x_i)}$, for which Chebyshevs inequality provides generic upper bounds. Compared to (a), in (b) the effect of choosing $t_2 > t_1 > 0$ is illustrated, whereas (c) shows the consequence of increasing the \gls{variance} by $\sigma_2^2 > \sigma_1^2$.}
+            \label{fig:chebyshevsinequality}
+        \end{figure}
+    Note that this generic upper bound may not be optimal for many \glspl{rv}, but serve as a basis to derive more refined          \glspl{concentrationinequ}. Figure \ref{fig:chebyshevsinequality} illustrates the \glspl{probability} of the  \textit{tail} \gls{event} 
+    $\{|x - \mu | \geq t \} = \{x - \mu \geq t \} \cup \{x - \mu  \leq -t \}$, for varying values of $t>0$ and the \gls{variance}
+    of the \gls{rv} $x$, aligned with the behavior of the upper bound in \eqref{eq:chebyshevsinequality}. \\
+    See also: \gls{expectation}, \gls{variance}, \gls{probability},  \gls{probspace}, \gls{markovsinequality}, \gls{concentrationinequ}.},
+    first={Chebyshev's inequality},
+    text={Chebyshev's inequality}  
+}
