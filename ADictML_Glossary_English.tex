@@ -11659,3 +11659,57 @@ text={MM}
     first={Chebyshev's inequality},
     text={Chebyshev's inequality}  
 }
+
+
+
+\newglossaryentry{geometricmargin} 
+{name={geometric margin}, 
+description={The foundation of a \gls{svm} solution is based on the definition of a geometric margin. The geometric margin $\rho_h(x)$ of a linear \gls{classifier}
+$h: x \mapsto w \cdot x + b$ at a specified \gls{datapoint} $x$, is defined as the distance from the \gls{datapoint} $x$ to the hyperplane defined by the linear equation $w \cdot x + b = 0$. Formally, $\rho_h(x)$: 
+\begin{equation}
+    \rho_h(x) = \frac{|w \cdot x + b|}{\|w\|_2}.
+    \label{eq:geometric_margin_point}
+\end{equation}
+Given a sample $S = (x_1, \ldots, x_m)$, the geometric margin of the linear \gls{classifier} is the \gls{minimum} geometric margin of all \glspl{datapoint} in the sample, that is: 
+\begin{equation}
+    \rho_h = \min_{i \in [m]} \rho_h(x_i),
+    \label{eq:geometric_margin_sample}
+\end{equation}
+A linear \gls{classifier} such as \gls{svm} attains its optimal solution from the separating hyperplane $w \cdot x + b = 0$ with the largest geometric margin, which is known as 
+the \gls{maximum}-margin hyperplane.  
+\cite{mohri2018foundations}
+ \\
+ \begin{figure}[H]
+	\begin{center}
+    \begin{tikzpicture}[scale = 0.8, x=1cm, y=1cm, >=stealth]
+        % Axes
+        \draw[->, thick] (-1,0) -- (5,0) node[right] {$x_1$};
+        \draw[->, thick] (0,-4) -- (0,5) node[above] {$x_2$};
+        % Hyperplane: w·x + b = 0
+        \draw[thick, black] (-0.5,2.5) -- (4.5,-2.5) node[below right] {Hyperplane $w \cdot x + b = 0$};
+        % Margin lines (parallel to hyperplane)
+        \draw[dashed, gray, thick] (-0.5,3.5) -- (4.5,-1.5);
+        \draw[dashed, gray, thick] (-0.5,1.5) -- (4.35,-3.5);
+        % Margin annotation (distance = 2/||w||)
+		\draw[->, thick, blue!70!black] (1,1) -- ++(1,1) node[midway, above right] {$\vec w$};
+		\coordinate (Lm) at ($(1,1)+(-0.5,-0.5)$); % point on lower margin
+    	\coordinate (Um) at ($(1,1)+(0.5,0.5)$);  
+		\draw[<->, blue, very thick] (Lm) -- (Um) node[midway, right] {$\displaystyle \frac{2}{\|\mathbf w\|}$};
+        % Positive class points (+1)
+        \foreach \x/\y in {1/3.1, 1.6/2.8, 2.4/2.7, 3.2/2.4}
+      		\fill[green!70!black] (\x,\y) circle (2.5pt);
+        % Negative class points (-1)
+        \foreach \x/\y in {1/-1.2, 1.5/-1.0, 0/-0.8, -1/-0.7}
+      		\fill[red!70!black] (\x,\y) circle (2.5pt);
+        % Labels for regions
+        \node[green!50!black] at (4,3.4) {$y=+1$ region};
+    	\node[red!60!black] at (2.0,-3.2) {$y=-1$ region};
+    \end{tikzpicture}
+	\end{center}
+    \caption{Support Vector Machine decision boundary with margin width $\tfrac{2}{\|w\|}$.}
+	\label{fig:geometric-margin}
+	\end{figure}
+ 		See also: \gls{svm}, \gls{classifier}.}, 
+  first = {geometric margin}, 
+  text = {geometric margin}
+ }
