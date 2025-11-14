@@ -16,7 +16,7 @@
       "id": "dimension",
       "name": "dimension",
       "desc": "The dimension of a is the cardinality of any of . Strictly speaking, this definition applies only to finite-dimensional , i.e., those that possess a finite . [H] [scale=1] (O) at (0,0); (O) -- (1.8,0) node[below right] { }; (O) -- (0,1.6) node[above left] { }; (0,0) -- (1.2,1.2) node[above right] { }; (0,0) -- (-1.2,1.2) node[above left] { }; (O) -- (2.0,0.6) node[above right] { }; (O) -- (0.4,1.8) node[left] { }; {Three , , for the .} For such spaces, all have the same cardinality, which is the dimension of the space . \\\\ See also: , .",
-      "deg": 7
+      "deg": 8
     },
     {
       "id": "linearlyindep",
@@ -43,10 +43,28 @@
       "deg": 2
     },
     {
+      "id": "imagesegmentation",
+      "name": "image segementation",
+      "desc": "Image segementation refers to the task of the pixels of an image into few segments.\\\\ See also: .",
+      "deg": 1
+    },
+    {
+      "id": "mgf",
+      "name": "moment generating function (MGF)",
+      "desc": "Consider The MGF of a real-valued is defined as for any for which this exists . As its name indicates, the MGF allows to compute the moments for . In particular, the -th moment is obtained by evaluating the -th derivative of for , i.e., . This fact can be verified by the following identities: {t} & = \\{ (t x) \\} \\\\ & {=} \\! \\{ _{k=0}^{ } {t^{k}}{k!} x^{k} \\} \\\\ & {=} _{k=0}^{ } {t^{k}}{k!}\\, \\! \\{ x^{k} \\}. Here, step is due to the Taylor series expansion of and step is valid when the MGF exists for all in some interval . [ht] [ width=9cm, height=4.2cm, domain=-1:1, samples=200, xlabel={ }, ylabel={}, ytick= , ytick={-1,-0.5,0,0.5,1}, yticklabels={ , , , , }, xtick={-1,-0.5,0,0.5,1}, xticklabels={ , , , , }, xmin=-1, xmax=1, legend style={at={(1.5,0.02)},anchor=south east} ] ; ; ; {The first few powers of a . The MGF encodes the moments of which are the of the powers for .} The MGF is a useful tool for the study of sums of independent . As a case in point, if and are independent , then the MGF of their sum typically satisfies , i.e., the MGF of the sum is typically the pointwise product of the individual MGFs .",
+      "deg": 2
+    },
+    {
+      "id": "chernoffbound",
+      "name": "Chernoff bound",
+      "desc": "TBC .",
+      "deg": 0
+    },
+    {
       "id": "rankdeficient",
       "name": "rank-deficient",
-      "desc": "A is if it is not full-rank, i.e., when .\\\\ See also: .",
-      "deg": 3
+      "desc": "A is rank-deficient if it is not , i.e., when . [htbp] [x=2cm] (0,0) -- (1,0) node[below] { }; (0,0) -- (0,1) node[above] { }; [shift={(3.2,0)}] (A) at (0.2,0.0); (B) at (2.0,0.0); (0,0) -- (A) node[below,yshift=-2pt] { }; (0,0) -- (B) node[above,yshift=2pt] { }; (1.6,0.5) to[bend left] node[midway, above] { } (2.7,0.5); {Example of a rank-deficient . } In , the solution of the problem is not unique whenever the is such that the is rank-deficient.\\\\ See also: , , .",
+      "deg": 8
     },
     {
       "id": "fullrank",
@@ -118,7 +136,7 @@
       "id": "vectorspace",
       "name": "vector space",
       "desc": "A space (also called linear space) is a collection of elements, called , along with the following two operations (see also Fig. ): 1) addition (denoted by ) of two ; and 2) multiplication (denoted by ) of a with a scalar that belongs to some number field (with a typical choice for this field being ). The defining property of a space is that it is closed under two specific operations. First, if , then . Second, if and , then . [H] [>=Stealth, scale=1.2] (O) at (0,0); (V) at (2,1.5); (W) at (1,3); (VplusW) at (3,4.5); (HalfV) at (1,0.75); (O) -- (V) node[pos=1, right] { }; (O) -- (W) node[pos=1, left] { }; (O) -- (VplusW) node[pos=0.99, above right] { }; (V) -- (VplusW); (W) -- (VplusW); (O) -- (HalfV) node[midway, right] { }; (O) circle (2pt) node[below left] { }; (V) circle (2pt); (W) circle (2pt); (VplusW) circle (2pt); (HalfV) circle (2pt); {A space is a collection of such that scaling and adding them always yields another in .} A common example of a space is the , which is widely used in to represent . We can also use to represent, either exactly or approximately, the used by an method. Another example of a space, which is naturally associated with every , is the collection of all real-valued , . \\\\ See also: , , , .",
-      "deg": 22
+      "deg": 23
     },
     {
       "id": "stochastic",
@@ -490,7 +508,7 @@
       "id": "probability",
       "name": "probability",
       "desc": "We assign a probability value, typically chosen in the interval , to each that can occur in a , , , . \\\\ See also: , .",
-      "deg": 27
+      "deg": 28
     },
     {
       "id": "underfitting",
@@ -580,7 +598,7 @@
       "id": "stability",
       "name": "stability",
       "desc": "Mathematically, a method is a map from a given to an output . As a case in point, consider an -based method that maps a to the learned which achieve the minimum average on the . Instead of the learned , the output could also be the obtained from the trained . Stability refers to the desirable property of that small changes in the input result in small changes in the output . The notion of stability is intimately related to the notion of . In particular, there are formal notions of stability that allow to bound the (see ). To build intuition, consider the three depicted in Fig. , each of which is equally likely under the same -generating . Since the optimal are determined by this underlying , an accurate method should return the same (or very similar) output for all three . In other words, any useful must be robust to variability in from the same , i.e., it must be stable. [H] [ axis lines=none, xlabel={ }, ylabel={}, legend pos=north west, ymin=0, ymax=10, xtick={1,2,3,4,5}, grid style=dashed, every axis plot/.append style={very thick} ] +[only marks,mark=*] coordinates { (1,2) (2,4) (3,3) (4,5) (5,7) }; +[only marks,mark=square*] coordinates { (1,3) (2,2) (3,6) (4,4) (5,5) }; +[only marks,mark=triangle*] coordinates { (1,5) (2,7) (3,4) (4,6) (5,3) }; {Three , , and , each sampled independently from the same -generating . A stable method should return similar outputs when trained on any of these . } See also: , .",
-      "deg": 19
+      "deg": 18
     },
     {
       "id": "privprot",
@@ -598,7 +616,7 @@
       "id": "probmodel",
       "name": "probabilistic model",
       "desc": "A probabilistic interprets the generation of as with a joint . This joint typically involves that have to be manually chosen or learned via statistical inference methods such as estimation . \\\\ See also: , , , , , , .",
-      "deg": 45
+      "deg": 46
     },
     {
       "id": "mean",
@@ -616,7 +634,7 @@
       "id": "variance",
       "name": "variance",
       "desc": "The variance of a real-valued is defined as the of the squared difference between and its . We extend this definition to -valued as . \\\\ See also: , , .",
-      "deg": 7
+      "deg": 9
     },
     {
       "id": "nn",
@@ -639,8 +657,8 @@
     {
       "id": "bias",
       "name": "bias",
-      "desc": "Consider an method using a parameterized . It learns the using the To analyze the properties of the method, we typically interpret the as of , We can then interpret the method as an estimator computed from (e.g., by solving ). The (squared) bias incurred by the estimate is then defined as . \\\\ See also: , , , .",
-      "deg": 13
+      "desc": "Consider a -based method that learns a from a given . The analysis of the method is often based on a (such as the ) for the generation. Here, and, in turn, the learnt are viewed as ( of) . Any property of , such as specific in a , or the error for a fixed , then also becomes a . The squared bias of a numeric property is Here, is a reference which could be defined by for a fixed test with and . \\\\ See also: , , , .",
+      "deg": 20
     },
     {
       "id": "classification",
@@ -1018,7 +1036,7 @@
       "id": "hypothesis",
       "name": "hypothesis",
       "desc": "A hypothesis refers to a (or ) from the to the . Given a with , we use a hypothesis to estimate (or approximate) the using the . [htbp] [ >=Latex, node distance=2.0cm, box/.style={draw, rounded corners=2pt, inner sep=6pt}, label/.style={font= }, thinline/.style={line width=0.6pt} ] (audio) {}; at (audio.north) [yshift=0mm] {audio samples }; ( ) .. controls +(.3,.35) and +(-.3,.35) .. ++(0.8,0) .. controls +(.3,-.35) and +(-.3,-.35) .. ++(0.8,0) .. controls +(.3,.25) and +(-.3,.25) .. ++(0.8,0) .. controls +(.3,-.25) and +(-.3,-.25) .. ++(0.8,0); (model) { }; (audio) -- (model) ; (rating) {}; at ( ) {}; (barL) at ( ); (barR) at ( ); (ptr) at ( ); ; (model) -- (rating); { A hypothesis maps the of a to a of the . For example, the application uses the samples of an audio recording as predict how closely a person’s singing resembles that of Freddie Mercury. } is all about learning (or finding) a hypothesis such that for any (with and ). Practical methods, limited by finite computational resources, must restrict learning to a subset of all possible hypothesis maps. This subset is called the or simply the underlying the method. \\\\ See also: , , , .",
-      "deg": 97
+      "deg": 98
     },
     {
       "id": "effdim",
@@ -1036,13 +1054,13 @@
       "id": "prediction",
       "name": "prediction",
       "desc": "A prediction is an estimate or approximation for some quantity of interest. revolves around learning or finding a that reads in the of a and delivers a prediction for its . \\\\ See also: , , , , , .",
-      "deg": 60
+      "deg": 61
     },
     {
       "id": "empiricaldistribution",
       "name": "empirical distribution",
       "desc": "Consider a consisting of distinct , each characterized by the for . For a given over the , the empirical distribution of is the defined via In other words, the empirical distribution assigns to any set the fraction of in that fall into . If the is ordered, the empirical distribution can also be characterized by its empirical where denotes the ordering relation on . [H] [>=stealth, thick,y=2cm] / in {1/0.3, 4/0.7} { ( ,0) -- ( , ); ( , ) circle (2pt); } at (1,0.3) { }; at (1,0) { }; at (4,0) { }; at (-1.2,-0.80) { }; {A consisting of , each characterized by a value from the finite . The empirical assigns to each possible value the fraction of in whose takes on this value. Here, three out of ten take on the value , resulting in . } If the is finite, the empirical distribution of can also be characterized by the empirical \\\\ See also: , .",
-      "deg": 10
+      "deg": 11
     },
     {
       "id": "histogram",
@@ -1053,8 +1071,8 @@
     {
       "id": "bootstrap",
       "name": "bootstrap",
-      "desc": "For the analysis of methods, it is often useful to interpret a given set of as of drawn from a common . In practice, the is unknown and must be estimated from . The bootstrap approach uses the of as an estimator for , By sampling with replacement from according to this empirical distribution, we generate new , each containing . We then use each of those for (e.g., via ), resulting in the learned We can use these learned to estimate the of the method . \\\\ See also: , , , .",
-      "deg": 14
+      "desc": "For the analysis of methods, it is often useful to interpret a given as ( of) a collection of with common . In practice, the is unknown and must be estimated from . The idea of the bootstrap method is to use the of as an estimator for , Repeatedly sampling from the , which is equivalent to sampling with replacement from , results in new , each containing . We then use each of those for (e.g., via ), resulting in the learned We can use these learned to estimate important characteristics of a method such as , or . . \\\\ See also: , , , .",
+      "deg": 17
     },
     {
       "id": "featurespace",
@@ -1090,25 +1108,25 @@
       "id": "featurevec",
       "name": "feature vector",
       "desc": "refers to a whose entries are individual . Many methods use that belong to some finite-dimensional . For some methods, however, it can be more convenient to work with that belong to an infinite-dimensional (e.g., see ). \\\\ See also: , , , , .",
-      "deg": 66
+      "deg": 67
     },
     {
       "id": "label",
       "name": "label",
       "desc": "A higher-level fact or quantity of interest associated with a . For example, if the is an image, the label could indicate whether the image contains a cat or not. Synonyms for label, commonly used in specific domains, include \"response variable,\" \"output variable,\" and \"target\" , , . \\\\ See also: , .",
-      "deg": 73
+      "deg": 74
     },
     {
       "id": "data",
       "name": "data",
       "desc": "In the context of , the term data is often used synonymously with . The ISO/IEC 2382:2015 standard defines data as a . \\\\ See also: , , .",
-      "deg": 46
+      "deg": 47
     },
     {
       "id": "dataset",
       "name": "dataset",
-      "desc": "A dataset is a set of distinct . Strictly speaking, a dataset is an unordered collection of that does not contain any repetitions. However, in practice, the term dataset is often used as a synonym for a , i.e., a sequence (or finite list) of and may contain repetitions. methods use datasets to train and validate . The notion of a dataset is broad: may represent concrete physical entities (such as humans or animals) or abstract objects (such as numbers). For illustration, Fig.~ depicts a dataset whose are cows. [H] { A cow herd somewhere in the Alps.} Quite often, an engineer does not have direct access to the underlying dataset. For instance, accessing the dataset in Fig.~ would require visiting the cow herd. In practice, we work with a more convenient representation (or approximation) of the dataset. Various mathematical have been developed for this purpose , , , . One of the most widely used is the relational , which organizes as a table (or relation) , . A table consists of rows and columns: each row corresponds to a single , while each column represents a specific attribute of a . methods typically interpret these attributes as or as a of a . As an illustration, Table~ shows a relational representation of the dataset from Fig.~ . In the relational , the order of rows is immaterial, and each attribute (column) is associated with a domain that specifies the set of admissible values. In applications, these attribute domains correspond to the and the . [H] { TABLE \\\\[0.5ex] A Relation (or Table) That Represents the Dataset in Fig. } {lcccc} & & & & \\\\ Zenzi & 100 & 4 & 100 & 25 \\\\ Berta & 140 & 3 & 130 & 23 \\\\ Resi & 120 & 4 & 120 & 31 \\\\ While the relational is useful for the study of many applications, it may be insufficient regarding the requirements for . Modern approaches like datasheets for datasets provide more comprehensive documentation, including details about the collection process, intended use, and other contextual information . \\\\ See also: , , , , , .",
-      "deg": 75
+      "desc": "A dataset is a set of distinct . Strictly speaking, a dataset is an unordered collection of that does not contain any repetitions. However, in literature, the term dataset is often used as a synonym for a , i.e., a sequence (or finite list) of and may contain repetitions. methods use datasets for and . The notion of a dataset is broad: may represent concrete physical entities (such as humans or animals) or abstract objects (such as numbers). For illustration, Fig.~ depicts a dataset whose are cows. [H] { A cow herd somewhere in the Alps.} Quite often, an engineer does not have direct access to the underlying dataset. For instance, accessing the dataset in Fig.~ would require visiting the cow herd. In practice, we work with a more convenient representation (or approximation) of the dataset. Various mathematical have been developed for this purpose , , , . One of the most widely used is the relational , which organizes as a table (or relation) , . A table consists of rows and columns: each row corresponds to a single , while each column represents a specific attribute of a . methods typically interpret these attributes as or as a of a . As an illustration, Table~ shows a relational representation of the dataset from Fig.~ . In the relational , the order of rows is immaterial, and each attribute (column) is associated with a domain that specifies the set of admissible values. In applications, these attribute domains correspond to the and the . [H] { TABLE \\\\[0.5ex] A Relation (or Table) That Represents the Dataset in Fig. } {lcccc} & & & & \\\\ Zenzi & 100 & 4 & 100 & 25 \\\\ Berta & 140 & 3 & 130 & 23 \\\\ Resi & 120 & 4 & 120 & 31 \\\\ While the relational is useful for the study of many applications, it may be insufficient regarding the requirements for . Modern approaches like datasheets for datasets provide more comprehensive documentation, including details about the collection process, intended use, and other contextual information . \\\\ See also: , , , , , .",
+      "deg": 76
     },
     {
       "id": "predictor",
@@ -1132,7 +1150,7 @@
       "id": "rv",
       "name": "random variable (RV)",
       "desc": "A RV is a that maps the outcomes of a to elements of a space . Mathematically, a RV is a with domain being the of a and co-domain being a space . Different types of RVs include , which map each outcome to an element of a binary set (e.g., or ); , which take on values in a countable set (which can be finite or countably infinite); , which take on values in the real numbers ; { -valued RVs}, which map outcomes to the . theory uses the concept of spaces to rigorously define and study the properties of collections of RVs . \\\\ See also: , , , , , , , .",
-      "deg": 66
+      "deg": 68
     },
     {
       "id": "probspace",
@@ -1156,7 +1174,7 @@
       "id": "trainset",
       "name": "training set",
       "desc": "A training set is a that consists of some used in to learn a . The average of on the training set is referred to as the . The comparison of the with the of allows us to diagnose the method and informs how to improve the (e.g., using a different or collecting more ) . \\\\ See also: , , , , , , , , .",
-      "deg": 64
+      "deg": 65
     },
     {
       "id": "netmodel",
@@ -1204,7 +1222,7 @@
       "id": "validation",
       "name": "validation",
       "desc": "Consider a that has been learned via some method, e.g., by solving on a . [htbp] [scale=1.2,x=1.5cm] plot ( ,{0.5* }) node[pos=0, above left] { }; (0,0) circle (4pt); (2,2) circle (4pt); at (0,0) { }; (1,3) circle (4pt); at (1,3) { }; {Illustration of validation. The blue points represent the in the , while the red point represents a in the . The (black curve) fits the in the perfectly, but incurs a large on the in the .} Validation refers to the process of evaluating the incurred by the on a set of that are not contained in the . This set of is called the . The average of on the is referred to as the .\\\\ See also: , , , , .",
-      "deg": 21
+      "deg": 22
     },
     {
       "id": "quadfunc",
@@ -1240,12 +1258,12 @@
       "id": "erm",
       "name": "empirical risk minimization (ERM)",
       "desc": "ERM is the of selecting a that minimizes the average (or ) on a . The is chosen from a (or ) . The is referred to as . A plethora of -based methods is obtained for different design choices for the , , and . Fig.\\ illustrates ERM for a and that are characterized by a single and a . The is a that predicts the of a as a linear of its , i.e., , where and are the of the . The ERM problem is to find the and that minimize the average (or ) incurred by the on the . [H] [scale=1] plot ({ },{ + }); (hend) at ( ,{ + }); at (hend) { }; / / in {1/1.2/1.8, 2/3.0/2.6, 3/5.0/5.7} { (l ) at ( , { + }); (n ) at ( , ); (pt ) at (n ) {}; (l ) -- (n ); } at (n1) { }; at (n2) { }; at (n3) { }; {ERM learns a out of a by minimizing the average (or ) incurred on a .} See also: , , , , .",
-      "deg": 84
+      "deg": 85
     },
     {
       "id": "sampleweighting",
       "name": "sample weighting",
-      "desc": "Consider an -based method that learns a by minimizing the average on a . In its basic form, treats all equally important. However, in some applications it can be useful to put different emphasis on the errors obtained for different . For example, if a is considered an we should reduce its influence on learned . We can implement this idea by assigning a no-negative weight to each in the . This results in the weighted principle _{ } _{ =1}^{ } \\, { { ^{( )}}{ ^{( )}}}{ }. Fig.~ illustrates the concept for a of three that contribute unequally to the . [H] [scale=1.0] plot({ },{ + }); at (6.5,{ 6.5+ }) { }; / / / in {1/1.2/1.8/0.6, 2/3.0/2.6/1.0, 3/5.0/5.7/1.5} { (pt ) at ( , ) {}; ( ,{ + }) -- (pt ); } at (pt1) { small}; at (pt2) { medium}; at (pt3) { large}; {Sample weighting assigns each of a a weight . Assigning a small weight (such as in this example) to a decreases its influence on the learned via solving .} See also: , , .",
+      "desc": "Consider an -based method that learns a by minimizing the average on a . In its basic form, treats all equally important. However, in some applications it can be useful to put different emphasis on the errors obtained for different . For example, if a is considered an we should reduce its influence on learned . We can implement this idea by assigning a no-negative weight to each in the . This results in the weighted principle _{ } _{ =1}^{ } \\, { { ^{( )}}{ ^{( )}}}{ }. Fig.~ illustrates the concept for a of three that contribute unequally to the . [H] [yscale=0.3] plot({ },{ + }); at (6.5,{ 6.5+ }) { }; / / / in {1/1.2/1.8/0.6, 2/3.0/2.6/1.0, 3/5.0/5.7/1.5} { (pt ) at ( , ) {}; ( ,{ + }) -- (pt ); } at (pt1) {small }; at (pt2) {medium }; at (pt3) {large }; {Sample weighting assigns each of a a weight . Assigning a small weight (such as in this example) to a decreases its influence on the learned via solving .} See also: , , .",
       "deg": 10
     },
     {
@@ -1258,7 +1276,7 @@
       "id": "training",
       "name": "training",
       "desc": "In the context of , training refers to the process of learning a useful out of a . The training of a is guided by the incurred on a set of , which serve as the . For , where each is characterized by a specific choice for the , training amounts to finding an optimal choice for the . A widely-used approach to training is , which learns a by minimizing the average incurred on a . One of the main challenges in is to control the discrepancy between the incurred on the and the incurred on other (unseen) . \\\\ See also: , , .",
-      "deg": 15
+      "deg": 16
     },
     {
       "id": "ssl",
@@ -1300,13 +1318,13 @@
       "id": "gengap",
       "name": "generalization gap",
       "desc": "gap is the difference between the performance of a on the and its performance on outside . We can make this notion precise by using a that allows us to compute the (or expected ) , of a . [H] [x=3cm, y=1cm] ( , ) rectangle ( , ); ( , ) -- ( , ); ( , ) -- ( , ); at ({( + )/2}, { -0.2}) { }; at (2, 4) { }; plot ({ +1}, { -0.5}) node[right] { }; plot ({ }, { }); (1, -0.5) -- (1, 1) node[midway, right] {gap}; (-1.2,-1) -- (2.2,-1) node[below right] { }; {The generalization gap can be defined as the difference between the and the average (or ) computed on a .} In practice, the underlying this is unknown. Thus, we need to estimate the based on observered . techniques use different constructions of a , which is different from the , to estimate the gap. \\\\ See also: , , , .",
-      "deg": 20
+      "deg": 21
     },
     {
       "id": "concentrationinequ",
       "name": "concentration inequality",
       "desc": "An upper bound on the that a deviates more than a prescribed amount from its . \\\\ See also: , , .",
-      "deg": 5
+      "deg": 6
     },
     {
       "id": "randomprojection",
@@ -1491,8 +1509,8 @@
     {
       "id": "featuremtx",
       "name": "feature matrix",
-      "desc": "Consider a with with . It is convenient to collect the individual into a of size . \\\\ See also: , , , , .",
-      "deg": 11
+      "desc": "Consider a with with . It is convenient to collect the individual into the Note that the is of size , i.e., it has rows and columns. \\\\ See also: , , , , .",
+      "deg": 12
     },
     {
       "id": "dbscan",
@@ -1605,7 +1623,7 @@
     {
       "id": "sample",
       "name": "sample",
-      "desc": "In the context of , a sample is a finite (of length ) of , . The number is called the . -based methods use a sample to train a (or learn a ) by minimizing the average (the ) over that sample. Since a sample is defined as a , the same may appear more than once. By contrast, some authors in statistics define a sample as a set of , in which case duplicates are not allowed . These two views can be reconciled by regarding a sample as a of – pairs, . The -th pair consists of the and the of an unique underlying . While the underlying are unique, some of them can have identical and . [>=Latex, font= ] (pop) {}; ; / [count= ] in {-2.0/0.3, -1.6/0.9, -1.2/-0.2, -0.8/0.5, -0.3/-0.6, 0.2/0.1, 0.6/0.8, 1.0/-0.4, 1.4/0.4, 1.8/-0.1} { (p ) at ( ); (p ) circle (1.6pt); } (sampleanchor) at ([xshift=1.8cm,yshift=0.5cm]pop.east); (s1) at ( ) { }; (s2) at ( ) { }; (s3) at ( ) { }; (s4) at ( ) { }; (s5) at ( ) { }; (s6) at ( ) { }; (seqbox) {}; ; at ( ) { }; (p2) to[out=0, in=180] ( ); (p7) to[out=10, in=180] ( ); (p4) to[out=10, in=180] ( ); (p5) to[out=-10, in=180] ( ); (p3) to[out=0, in=180] ( ); (p3) to[out=-5, in=180] ( ); {A sample viewed as a finite . Each element of this sample consists of the and the of a from an underlying population. The same may occur more than once in the sample. } For the analysis of methods, it is common to interpret (the generation of) a sample as the of a indexed by . A widely used assumption is the , where sample elements , for , are with a common . \\\\ See also: , , .",
+      "desc": "In the context of , a sample is a finite (of length ) of , . The number is called the . -based methods use a sample to train a (or learn a ) by minimizing the average (the ) over that sample. Since a sample is defined as a , the same may appear more than once. By contrast, some authors in statistics define a sample as a set of , in which case duplicates are not allowed . These two views (sequence vs. set) can be reconciled by regarding a sample as a of – pairs, . The -th pair consists of the and the of an unique underlying . While the underlying are unique, some of them can have identical and . [>=Latex, font= ] (pop) {}; ; / [count= ] in {-2.0/0.3, -1.6/0.9, -1.2/-0.2, -0.8/0.5, -0.3/-0.6, 0.2/0.1, 0.6/0.8, 1.0/-0.4, 1.4/0.4, 1.8/-0.1} { (p ) at ( ); (p ) circle (1.6pt); } (sampleanchor) at ([xshift=1.8cm,yshift=0.5cm]pop.east); (s1) at ( ) { }; (s2) at ( ) { }; (s3) at ( ) { }; (s4) at ( ) { }; (s5) at ( ) { }; (s6) at ( ) { }; (seqbox) {}; ; at ( ) { }; (p2) to[out=0, in=180] ( ); (p7) to[out=10, in=180] ( ); (p4) to[out=10, in=180] ( ); (p5) to[out=-10, in=180] ( ); (p3) to[out=0, in=180] ( ); (p3) to[out=-5, in=180] ( ); {A sample viewed as a finite . Each element of this sample consists of the and the of a from an underlying population. The same may occur more than once in the sample. } For the analysis of methods, it is common to interpret (the generation of) a sample as the of a indexed by . A widely used assumption is the , where sample elements , for , are with a common . \\\\ See also: , , .",
       "deg": 27
     },
     {
@@ -1774,13 +1792,13 @@
       "id": "gmm",
       "name": "Gaussian mixture model (GMM)",
       "desc": "A GMM is a particular type of for characterized by a numeric . Within a GMM, the is drawn from a randomly selected with . The index is a with . A GMM is parameterized, for each , by the , the , and the . \\\\ See also: , , .",
-      "deg": 14
+      "deg": 15
     },
     {
       "id": "maxlikelihood",
       "name": "maximum likelihood",
       "desc": "Consider that are interpreted as the of with a common , which depends on the . likelihood methods learn by maximizing the probability (density) of the observed . Thus, the likelihood estimator is a solution to the . \\\\ See also: , , .",
-      "deg": 12
+      "deg": 13
     },
     {
       "id": "em",
@@ -1809,14 +1827,20 @@
     {
       "id": "columnspace",
       "name": "column space",
-      "desc": "The column space of a , denoted by , is the set of all linear combinations of the columns of . In other words, The column space is a subspace of the . \\\\ See also: , .",
-      "deg": 6
+      "desc": "The column space of a , denoted by , is the set of all linear combinations of the columns of . In other words, The column space of is a of the . \\\\ See also: , .",
+      "deg": 7
+    },
+    {
+      "id": "hyperplane",
+      "name": "hyperplane",
+      "desc": "TBC",
+      "deg": 0
     },
     {
       "id": "subspace",
       "name": "subspace",
       "desc": "A subset of is a subspace of if it is also a with respect to the same operations as . \\\\ See also: .",
-      "deg": 1
+      "deg": 2
     },
     {
       "id": "designmatrix",
@@ -1887,14 +1911,14 @@
     {
       "id": "weightedleastsquares",
       "name": "weighted least squares",
-      "desc": "Weighted least squares refers to -based methods that use the weighted average on a to measure the quality of a . [H] [scale=0.7, y=0.5cm, x=0.5cm] / in { 1/2, 4/3, 7/10 } { ( , 0) -- ( , ); ( , ) circle (2pt); (ptB ) at ( , ) {}; } (0.5, 3.5) -- (10.5, 3.5) node[right] { }; at (ptB7) { }; (lineStart) at (0.5, 3.5); (lineEnd) at (10.5, 3.5); (lineStart) -- (lineEnd) node[right] { }; let 1 = (ptB7) in coordinate (proj7) at ( 1, 3.5); (proj7) -- node[right, xshift=2pt, fill=white, inner sep=1pt] { } (ptB7); (proj7) circle (1.2pt); (ptB7) circle (1.2pt); {Weighted least squares can be used to mitigate the effect of in a . } The weights allow us to emphasize or de-emphasize the contribution of individual in the . Ideally, we assign a small weight (de-empahsize) the -th if it is an (see Figure ). We obtain different weighted least squares methods by using different in . \\\\ See also: , , , .",
+      "desc": "Weighted least squares refers to -based methods that use the weighted average on a to measure the quality of a . [H] [scale=0.7, y=0.5cm, x=0.5cm] / in { 1/2, 4/3, 7/10 } { ( , 0) -- ( , ); ( , ) circle (2pt); (ptB ) at ( , ) {}; } (0.5, 3.5) -- (10.5, 3.5) node[right] { }; at (ptB7) { }; (lineStart) at (0.5, 3.5); (lineEnd) at (10.5, 3.5); (lineStart) -- (lineEnd) node[right] { }; let 1 = (ptB7) in coordinate (proj7) at ( 1, 3.5); (proj7) -- node[right, xshift=2pt, fill=white, inner sep=1pt] { } (ptB7); (proj7) circle (1.2pt); (ptB7) circle (1.2pt); {Weighted least squares can be used to mitigate the effect of in a . } The weights allow us to emphasize or de-emphasize the contribution of individual in the . Ideally, we assign a small weight to the -th if it is an (see Figure ). We obtain different weighted least squares methods by using different in . \\\\ See also: , , , .",
       "deg": 10
     },
     {
       "id": "linreg",
       "name": "linear regression",
       "desc": "Linear methods learn a linear which is used to predict the numeric of a based on its numeric . The least-squares variant of linear measures the quality of a linear via the average incurred on a As an instance of , linear (least-squares) learns the by solving the [H] [scale=0.7, y=0.5cm, x=0.5cm] / in { 1/2, 4/3, 7/4 } { ( , 0) -- ( , ); ( , ) circle (2pt); (ptA ) at ( , ) {}; } (0.5, 3) -- (10.5, 3) node[right] { }; at (7.5, -4) {(a)}; [xshift=10cm] / in { 1/2, 4/3, 7/10 } { ( , 0) -- ( , ); ( , ) circle (2pt); (ptB ) at ( , ) {}; } (0.5, 7.5) -- (10.5, 7.5) node[right] { }; at (ptB7) { }; at (7.5, -4) {(b)}; {For a with and using the trivial for any , linear reduces to computing the average . (a) A clean and resulting (given by the average). (b) A perturbed (including an ) and the resulting . } We can rewrite the above more compactly using the and the . This allows to rewrite the above as By the , a necessary and sufficient condition for a vector to be a solution to the above is the linear system of equations ^{T} = ^{T} . Instead of solving directly (via computing the or ), many mehtods use variants of to construct a sequence of increasingly accurate approximations of a solution to . These can be interpreted as a for the following re-formulation of , This equation is solved by a if and only if this also solves . The optimality condition is also useful for the study of the of linear . Ideally, we would like the solutions of to be insensitive to small perturbations of the . We can capture these perturbations via a perturbed and perturbed . Here, and represent small perturbations to the and of the in the original . perturbation theory allows to evaluate how much the solutions of the perturbed linear problem deviate from the solutions of the original linear problem. \\\\ See also: , , .",
-      "deg": 41
+      "deg": 42
     },
     {
       "id": "ridgeregression",
@@ -1906,7 +1930,7 @@
       "id": "expectation",
       "name": "expectation",
       "desc": "Consider a numeric that we interpret as the of a with a . The expectation of is defined as the integral . Note that the expectation is only defined if this integral exists, i.e., if the is integrable , , . Fig. illustrates the expectation of a scalar discrete that takes on values from a finite set only. [H] [ ybar, y=5cm, x=2cm, bar width=0.6cm, xlabel={ }, clip=false, ylabel={ }, y label style={rotate=-90, anchor=west, xshift=-1cm}, xtick={1,2,3,4,5}, ymin=0, ymax=0.6, grid=both, major grid style={gray!20}, tick align=outside, axis line style={black!70}, ] +[ybar, fill=blue!50] coordinates { (1,0.1) (2,0.2) (3,0.4) (4,0.2) (5,0.1) }; at (axis cs:1,0.13) { }; at (axis cs:2,0.23) { }; at (axis cs:3,0.43) { }; at (axis cs:4,0.23) { }; at (axis cs:5,0.13) { }; at (axis cs:3.8,0.53) { }; {The expectation of a discrete is obtained by summing its possible values , weighted by the corresponding . } See also: , , , , .",
-      "deg": 17
+      "deg": 19
     },
     {
       "id": "logreg",
@@ -1930,13 +1954,13 @@
       "id": "iidasspt",
       "name": "independent and identically distributed assumption (i.i.d.\\ assumption)",
       "desc": "The assumption interprets of a as the of . \\\\ See also: , , , , .",
-      "deg": 13
+      "deg": 14
     },
     {
       "id": "hypospace",
       "name": "hypothesis space",
       "desc": "A space is a mathematical that characterizes the learning capacity of an method. The goal of such a method is to learn a that maps of a to a of its . Given a finite amount of computational resources, a practical method typically explores only a restricted set of all possible from the to the . Such a restricted set is referred to as a space underlying the method (see Fig. ). For the analysis of a given method, the choice of a space is not unique, i.e., any superset containing all the method can learn is also a valid space. [H] [allow upside down, scale=0.4] [below] at (5,-3) { }; [ultra thick] (5,0) circle (5cm); [ultra thick,fill=black!20] (5,0) circle (1cm); [] at (5,0) { }; {The space of an method is a (typically very small) subset of the (typically very large) set of all possible from the into the . } On the other hand, from an engineering perspective, the space is a design choice for -based methods. This design choice can be guided by the available computational resources and . For instance, if efficient operations are feasible and a roughly linear relation exists between and , a can be a useful choice for . \\\\ See also: , , , .",
-      "deg": 36
+      "deg": 35
     },
     {
       "id": "model",
@@ -1971,8 +1995,8 @@
     {
       "id": "clusteringerror",
       "name": "clustering error",
-      "desc": "Consider a method that decomposes a given into . The error is a quantitative measure for the usefulness of the . Different methods use different choices for the error. [scale=1] (c1) at (0.8,0.7); ( ) rectangle ( ); at (c1) { }; (c2) at (3.6,1.6); ( ) rectangle ( ); at (c2) { }; [shift={(c1)}, xscale=0.9, yscale=0.7, rotate=0] / in {-0.6/-0.4, 0.1/0.9, 0.7/-0.6} { ( , ) circle (1.5pt); ( , ) -- (0,0); } [shift={(c2)}, xscale=0.8, yscale=0.8, rotate=0] / in {-1.1/-0.5, -0.2/0.6, 0.6/-0.2} { ( , ) circle (1.5pt); ( , ) -- (0,0); } {For with numeric , we can use the average squared to the nearest as a measure for the error.} For example, the method measures the error via the average squared between a (its ) and the nearest .",
-      "deg": 9
+      "desc": "Consider a method that decomposes a given into . The error is a quantitative measure for the usefulness of the . Different methods use different choices for the error. [scale=1] (c1) at (0.8,0.7); ( ) rectangle ( ); at (c1) { }; (c2) at (6.6,1.6); ( ) rectangle ( ); at (c2) { }; [shift={(c1)}, xscale=1.3, yscale=1.3, rotate=0] / in {-0.6/-0.4, 0.1/0.9, 0.7/-0.6} { ( , ) circle (1.5pt); ( , ) -- (0,0); } [shift={(c2)}, xscale=1.5, yscale=1.5, rotate=0] / in {-1.1/-0.5, -0.2/0.6, 0.6/-0.2} { ( , ) circle (1.5pt); ( , ) -- (0,0); } {For with numeric , we can use the average squared to the nearest as a measure for the error. } For example, the method measures the error via the average squared between the of a and the nearest (see Figure ). Another construction for the error can be based on a such as the where the are of the underlying .\\\\ See also: , , , .",
+      "deg": 14
     },
     {
       "id": "hardclustering",
@@ -1996,7 +2020,7 @@
       "id": "clustering",
       "name": "clustering",
       "desc": "Clustering methods decompose a given set of into a few subsets, which are referred to as . Each consists of that are more similar to each other than to outside the . Different clustering methods use different measures for the similarity between and different forms of representations. The clustering method uses the average of a (i.e., the ) as its representative. A popular method based on represents a by a . \\\\ See also: , , , .",
-      "deg": 22
+      "deg": 23
     },
     {
       "id": "cluster",
@@ -2194,7 +2218,7 @@
       "id": "probdist",
       "name": "probability distribution",
       "desc": "To analyze methods, it can be useful to interpret as of a . The typical properties of such are then governed by the distribution of this . The distribution of a binary is fully specified by the and . The distribution of a real-valued might be specified by a such that . In the most general case, a distribution is defined by a measure , . \\\\ See also: , , , , .",
-      "deg": 46
+      "deg": 47
     },
     {
       "id": "pdf",
@@ -2206,7 +2230,7 @@
       "id": "parameter",
       "name": "parameter",
       "desc": "The parameter of an is a tunable (i.e., learnable or adjustable) quantity that allows us to choose between different . For example, the consists of all with a particular choice for the parameters . Another example of a parameter is the assigned to a connection between two neurons of an . \\\\ See also: , , , , , , .",
-      "deg": 26
+      "deg": 27
     },
     {
       "id": "lln",
@@ -2254,7 +2278,7 @@
       "id": "parammodel",
       "name": "parametric model",
       "desc": "A parametric is a mathematical characterized by a finite set of variable quantities called . An important example is the consisting, for a given , of all (on ) with some and . In the context of , a parametric defines a parameterized by a finite number of . Each is uniquely identified by a list of (see Fig.~ ). We can stack these into a . Two widely used examples of parametric are the and the . The corresponding is typically a subset of . [H] (paramspace) {}; { space }; (theta1) at ( ) {}; ; (theta2) at ( ) {}; ; (plotcloud) {}; { }; (plot1start) at ( ) {}; (plot1start) .. controls ++(0.8, 1) and ++(-0.8, -0.8) .. ( ) node[anchor=west] { }; (plot2start) at ( ) {}; (plot2start) .. controls ++(0.8, 0.5) and ++(-0.8, -0.8) .. ( ) node[anchor=west] { }; (theta1) to ( ); (theta2) to (plot2start); {The space of an consists of all feasible choices for the . Each choice for the selects a . } See also: , , .",
-      "deg": 20
+      "deg": 21
     },
     {
       "id": "paramspace",
@@ -2367,7 +2391,7 @@
     {
       "id": "convergence",
       "name": "convergence",
-      "desc": "Consider a with numeric values . This is said to converge to a value if the values become arbitrarily close to for sufficiently large indices , Mathematically speaking, the converges to if We denote the convergence of a to by [x=1.2cm, y=2cm, >=stealth] (0.5,0) -- (6.5,0) node[right] { }; (0.5,0) -- (0.5,1.6) node[above] { }; (0, {1- }) rectangle (6.3, {1+ }); (0,{1+ }) -- (6.3,{1+ }) node[right] { }; (0,{1- }) -- (6.3,{1- }) node[right] { }; (0,1) -- (6.3,1) node[right] { }; in {1,...,6} { {1 - 0.6^( )} ( , ) circle (2pt); } in {1,2,3} { ( ,0.02) -- ( ,-0.02) node[below] { }; } ( ,0) -- ( ,1.7); at ( ,1.7) { }; {A real-valued sequence converging to the limit . } The concept of convergence of a real-valued (where ) exstends naturally to a in an aribtrary . Indeed, we just need to replace the absolute difference by the . Note that a can only converge if it is a CITE. However, not every is converging (as this requires the underlying to be complete). \\\\ See also: , , .",
+      "desc": "Consider a with numeric values . This is said to converge to a value if the values become arbitrarily close to for sufficiently large indices , Mathematically speaking, the converges to if We denote the convergence of a to by [x=1.2cm, y=2cm, >=stealth] (0.5,0) -- (6.5,0) node[right] { }; (0.5,0) -- (0.5,1.6) node[above] { }; (0, {1- }) rectangle (6.3, {1+ }); (0,{1+ }) -- (6.3,{1+ }) node[right] { }; (0,{1- }) -- (6.3,{1- }) node[right] { }; (0,1) -- (6.3,1) node[right] { }; in {1,...,6} { {1 - 0.6^( )} ( , ) circle (2pt); } in {1,2,3} { ( ,0.02) -- ( ,-0.02) node[below] { }; } ( ,0) -- ( ,1.7); at ( ,1.7) { }; {A real-valued sequence converging to the limit . } The concept of convergence of a real-valued (where ) exstends naturally to a in an aribtrary . Indeed, we just need to replace the absolute difference by the . Note that a can only converge if it is a . However, not every is converging (as this requires the underlying to be complete). \\\\ See also: , , .",
       "deg": 10
     },
     {
@@ -2386,7 +2410,13 @@
       "id": "markovsinequality",
       "name": "Markov's inequality",
       "desc": "Consider a real-valued non-negative for which the exists. Markov's inequality provides an upper bound on the that exceeds a given positive threshold . In particular, { \\{ x\\}}{a} a > 0. This inequality can be verified by noting that is the with the As illustrated in Figure , for any positive , This implies Markov's inequality via the monotonicity property of the . [scale=1, x=0.8cm, y=0.8cm] (0,0) -- ( +1,0) node[below right] { }; (0,0) -- (0,3.1) node[left] { }; plot[samples=400, domain=0: , smooth] ( ,{ (6/sqrt(2*pi)) * ( )^(1.5) * exp(- /2) }) -- ( ,0) -- (0,0) -- cycle; plot ( ,{ (6/(sqrt(2*pi))) * ( )^(1.5) * exp(- /2) }) node[pos=0.9, above right, xshift=2pt] {}; ( ,0) -- ( ,1.05); at ( ,0) { }; at (1* ,3) { }; at (0,0) { }; (0,0) -- ( ,0); ( ,0) circle (2pt); ( ,1) -- ( ,1) node[pos=0.9, above, yshift=2pt] { }; ( ,1) circle (2pt); plot ( ,{ (1/ ) }); at ({2.5* +0.2},{2.5}) { }; (0,1) -- ++(-0.12,0) node[left] { }; {The and the of a non-negative with can be obtained via of and , respectively.} \\\\ See also: , , .",
-      "deg": 7
+      "deg": 8
+    },
+    {
+      "id": "chebyshevsinequality",
+      "name": "Chebyshev's inequality",
+      "desc": "Consider a real-valued for which the second moment exists (and is finite). The existence of the second moment implies the existence of a finite and a finite . Chebyshev's inequality refers to the following upper bound on the that deviates from by more than a given threshold . In particular, { ^2} > 0. This upper bound can be obtained by applying to the new . [htbp] [ width=9cm, height=4.2cm, samples=300, axis lines=left, ylabel={ }, xlabel={ }, x label style={at={(axis description cs:1,0)}, anchor=west}, ylabel style={rotate=270,anchor=south,at={(axis description cs:0,1.02)}}, xtick={-1.5,0,1.5}, xticklabels={ , , }, ytick= , ymin=0, ymax=0.45, domain=-4:4, clip=false ] ; ; fill between[of=pdf and axis, soft clip={domain=1.5:4}]; fill between[of=pdf and axis, soft clip={domain=-4:-1.5}]; (axis cs:0,0) -- (axis cs:0,0.42); (axis cs:1.5,0) -- (axis cs:1.5,{exp(-0.5*1.5^2)/sqrt(2*pi)}); (axis cs:-1.5,0) -- (axis cs:-1.5,{exp(-0.5*1.5^2)/sqrt(2*pi)}); {Chebyshev's inquality provides an upper bound for the tail (shaded area) of a real-valued with finite second moment. } \\\\ See also: , , .",
+      "deg": 6
     }
   ],
   "edges": [
@@ -2523,12 +2553,44 @@
       "target": "matrix"
     },
     {
+      "source": "imagesegmentation",
+      "target": "clustering"
+    },
+    {
+      "source": "mgf",
+      "target": "rv"
+    },
+    {
+      "source": "mgf",
+      "target": "expectation"
+    },
+    {
       "source": "rankdeficient",
       "target": "matrix"
     },
     {
       "source": "rankdeficient",
       "target": "fullrank"
+    },
+    {
+      "source": "rankdeficient",
+      "target": "linreg"
+    },
+    {
+      "source": "rankdeficient",
+      "target": "erm"
+    },
+    {
+      "source": "rankdeficient",
+      "target": "featuremtx"
+    },
+    {
+      "source": "rankdeficient",
+      "target": "dimension"
+    },
+    {
+      "source": "rankdeficient",
+      "target": "vectorspace"
     },
     {
       "source": "fullrank",
@@ -5340,19 +5402,31 @@
     },
     {
       "source": "bias",
+      "target": "erm"
+    },
+    {
+      "source": "bias",
       "target": "ml"
     },
     {
       "source": "bias",
-      "target": "hypospace"
+      "target": "hypothesis"
     },
     {
       "source": "bias",
-      "target": "modelparam"
+      "target": "trainset"
     },
     {
       "source": "bias",
-      "target": "dataset"
+      "target": "probmodel"
+    },
+    {
+      "source": "bias",
+      "target": "iidasspt"
+    },
+    {
+      "source": "bias",
+      "target": "data"
     },
     {
       "source": "bias",
@@ -5364,19 +5438,31 @@
     },
     {
       "source": "bias",
-      "target": "iid"
-    },
-    {
-      "source": "bias",
       "target": "rv"
     },
     {
       "source": "bias",
-      "target": "erm"
+      "target": "modelparam"
     },
     {
       "source": "bias",
-      "target": "probmodel"
+      "target": "parammodel"
+    },
+    {
+      "source": "bias",
+      "target": "prediction"
+    },
+    {
+      "source": "bias",
+      "target": "featurevec"
+    },
+    {
+      "source": "bias",
+      "target": "label"
+    },
+    {
+      "source": "bias",
+      "target": "iid"
     },
     {
       "source": "bias",
@@ -7104,7 +7190,7 @@
     },
     {
       "source": "bootstrap",
-      "target": "datapoint"
+      "target": "dataset"
     },
     {
       "source": "bootstrap",
@@ -7124,11 +7210,11 @@
     },
     {
       "source": "bootstrap",
-      "target": "histogram"
+      "target": "empiricaldistribution"
     },
     {
       "source": "bootstrap",
-      "target": "dataset"
+      "target": "datapoint"
     },
     {
       "source": "bootstrap",
@@ -7148,7 +7234,19 @@
     },
     {
       "source": "bootstrap",
-      "target": "stability"
+      "target": "bias"
+    },
+    {
+      "source": "bootstrap",
+      "target": "variance"
+    },
+    {
+      "source": "bootstrap",
+      "target": "gengap"
+    },
+    {
+      "source": "bootstrap",
+      "target": "histogram"
     },
     {
       "source": "featurespace",
@@ -7292,15 +7390,23 @@
     },
     {
       "source": "dataset",
-      "target": "sample"
-    },
-    {
-      "source": "dataset",
       "target": "ml"
     },
     {
       "source": "dataset",
+      "target": "sample"
+    },
+    {
+      "source": "dataset",
       "target": "model"
+    },
+    {
+      "source": "dataset",
+      "target": "training"
+    },
+    {
+      "source": "dataset",
+      "target": "validation"
     },
     {
       "source": "dataset",
@@ -10680,6 +10786,10 @@
     },
     {
       "source": "columnspace",
+      "target": "subspace"
+    },
+    {
+      "source": "columnspace",
       "target": "euclidspace"
     },
     {
@@ -11549,6 +11659,26 @@
     {
       "source": "clusteringerror",
       "target": "kmeans"
+    },
+    {
+      "source": "clusteringerror",
+      "target": "probmodel"
+    },
+    {
+      "source": "clusteringerror",
+      "target": "gmm"
+    },
+    {
+      "source": "clusteringerror",
+      "target": "parameter"
+    },
+    {
+      "source": "clusteringerror",
+      "target": "probdist"
+    },
+    {
+      "source": "clusteringerror",
+      "target": "maxlikelihood"
     },
     {
       "source": "hardclustering",
@@ -13732,6 +13862,30 @@
     },
     {
       "source": "markovsinequality",
+      "target": "concentrationinequ"
+    },
+    {
+      "source": "chebyshevsinequality",
+      "target": "rv"
+    },
+    {
+      "source": "chebyshevsinequality",
+      "target": "expectation"
+    },
+    {
+      "source": "chebyshevsinequality",
+      "target": "variance"
+    },
+    {
+      "source": "chebyshevsinequality",
+      "target": "probability"
+    },
+    {
+      "source": "chebyshevsinequality",
+      "target": "markovsinequality"
+    },
+    {
+      "source": "chebyshevsinequality",
       "target": "concentrationinequ"
     }
   ]

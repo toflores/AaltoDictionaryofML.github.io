@@ -184,15 +184,134 @@
    first = {tall matrix} 
 }
 
-\newglossaryentry{rankdeficient}
- {name={rank-deficient},
-  description={A matrix ${\bf A}\in \mathbb{R}^{m\times d}$ 
-  is\index{rank-deficient} if it is not full-rank, i.e., when $\rank{{\bf A}} < \min\{m,d\}$.\\ 
-  See also: full-rank. 
-  }, 
-  first={rank-deficient}, 
-  text={rank-deficient}
- }
+\newglossaryentry{imagesegmentation}
+{name={image segementation}, 
+ description={Image segementation\index{image segmentation} refers to the task of 
+    clustering the pixels of an image into few segments.\\ 
+ 	See also: clustering.}, 
+ first = {image segmentation}, 
+ text = {image segmentation}
+ } 
+
+\newglossaryentry{mgf}
+{name={moment generating function (MGF)}, 
+ description={Consider 
+     The \index{moment generating function (MGF)} MGF $M_{x}\left(t\right)$ 
+	 of a real-valued random variable (RV) $x$ is defined as
+	 $M_{x}\left(t\right) = \mathbb{E} \{ \exp(t \cdot x) \}$ for any $t \in \mathbb{R}$ 
+	 for which this expectation exists \cite[Sec. 21]{BillingsleyProbMeasure}. 
+	 As its name indicates, the MGF allows to compute the moments 
+	 $\mathbb{E} \{ x^{k} \}$ for $k \in \mathbb{N}$. 
+	 In particular, the $k$-th moment is obtained by evaluating the $k$-th 
+	 derivative of $M_{x}\left(t\right)$ for $t=0$, i.e., $\mathbb{E} \{ x^{k} \} = M_{x}^{(k)}\left(0\right)$. 
+	 This fact can be verified by the following identities: 
+	 \begin{align}
+		M_{x}\left(t\right) & =\mathbb{E} \{ \exp(t \cdot x)  \} \nonumber \\ 
+		& \stackrel{(a)}{=} \mathbb{E} \!\bigg\{\sum_{k=0}^{\infty} \frac{t^{k}}{k!} x^{k}\bigg\}  \nonumber \\ 
+		& \stackrel{(b)}{=}  \sum_{k=0}^{\infty} \frac{t^{k}}{k!}\, \mathbb{E} \!\big\{ x^{k} \big\}. \nonumber
+	 \end{align}
+	 Here, step $(a)$ is due to the Taylor series expansion of 
+	 $\exp(t \cdot x)$ and step $(b)$ is valid when the MGF exists 
+	 for all $t$ in some interval $(-t_{0},t_{0})$ \cite[p. 278]{BillingsleyProbMeasure}.
+	 \begin{figure}[ht]
+		\centering
+		\begin{tikzpicture}
+		\begin{axis}[
+			width=9cm, height=4.2cm,
+			domain=-1:1,
+			samples=200,
+			
+			xlabel={$x$},
+			ylabel={},
+			ytick=\empty,
+			ytick={-1,-0.5,0,0.5,1}, 
+            yticklabels={$-1$,$-0.5$,$0$,$0.5$,$1$},
+			xtick={-1,-0.5,0,0.5,1}, 
+            xticklabels={$-1$,$-0.5$,$0$,$0.5$,$1$},
+			xmin=-1, xmax=1,
+			legend style={at={(1.5,0.02)},anchor=south east}
+		]
+			
+			\addplot[thick, dashed] {x};
+			\addlegendentry{$x$}
+			
+			\addplot[thick, dotted] {x^2};
+			\addlegendentry{$x^{2}$}
+			
+			\addplot[thick, dashdotdotted] {x^3};
+			\addlegendentry{$x^{3}$}
+		\end{axis}
+		\end{tikzpicture}
+		\caption{The first few powers of a random variable (RV) $x$. The MGF 
+		encodes the moments of $x$ which are the expectations 
+		of the powers $x^{k}$ for $k=1,2,\ldots$.}
+		\end{figure}
+		The MGF is a useful tool for the study of sums of independent 
+		random variables (RVs). As a case in point, if $x$ and $y$ are independent 
+		random variables (RVs), then the MGF of their sum $z = x + y$ typically 
+		satisfies $M_{z}\left(t\right) = M_{x}\left(t\right)\,M_{y}\left(t\right)$,
+        i.e., the MGF of the sum is typically the pointwise product of the 
+		individual MGFs \cite[p.~280]{BillingsleyProbMeasure}.
+ 	 }, 
+ first = {moment generating function (MGF)}, 
+ firstplural={moment generating functions (MGFs)}, 
+ plural = {MGFs}, 
+ type=math, 
+ text = {MGF}
+ } 
+
+ \newglossaryentry{chernoffbound}
+{name={Chernoff bound}, 
+ description={TBC \index{Chernoff bound}.}, 
+ first = {Chernoff bound}, 
+ type=math, 
+ text = {Chernoff bound}
+ } 
+
+ \newglossaryentry{rankdeficient}
+  {name={rank-deficient},
+   description={A matrix ${\bf A}\in \mathbb{R}^{m\times d}$ 
+          is rank-deficient \index{rank-deficient} if it is not full-rank, i.e., 
+         when $\rank{{\bf A}} < \min\{m,d\}$.
+ \begin{figure}[htbp]
+		\begin{center}
+		\begin{tikzpicture}[x=2cm]
+			
+			\begin{scope}
+				\draw[->, thick] (0,0) -- (1,0) node[below] {${\bf u}^{(1)}$};
+				\draw[->, thick] (0,0) -- (0,1) node[above] {${\bf u}^{(2)}$};
+				
+				
+				
+			\end{scope}
+			
+			\begin{scope}[shift={(3.2,0)}]
+				
+			
+				\coordinate (A) at (0.2,0.0);
+				\coordinate (B) at (2.0,0.0);
+				\draw[->, very thick, red] (0,0) -- (A) node[below,yshift=-2pt] {${\bf A}{\bf u}^{(1)}$};
+				\draw[->, very thick, red] (0,0) -- (B) node[above,yshift=2pt] {${\bf A}{\bf u}^{(2)}$};
+				
+				
+			\end{scope}
+			
+			\draw[->, thick] (1.6,0.5) to[bend left] node[midway, above] {${\bf A}$} (2.7,0.5);
+		
+		\end{tikzpicture}
+		\end{center}
+		\caption{Example of a rank-deficient matrix 
+		${\bf A}\in \mathbb{R}^{2 \times 2}$.	\label{fig_matrix_rank_defdict}} 
+		\end{figure} 
+	In linear regression, the solution of the empirical risk minimization (ERM) problem is not 
+	unique whenever the feature matrix ${\bf X}$ is such that 
+	the matrix ${\bf X}^{\top}{\bf X}$ is rank-deficient.\\
+   See also: full-rank, dimension, vector space. 
+   }, 
+   first={rank-deficient}, 
+   type=math,
+   text={rank-deficient}
+  }
 
  \newglossaryentry{fullrank}
  {name={full-rank},
@@ -3419,14 +3538,24 @@ plural={medians},
 
 \newglossaryentry{bias}
 {name={bias},
-	description={Consider\index{bias} an machine learning (ML) method using a parameterized hypothesis space $\mathcal{H}$. 
-		It learns the model parameters ${\bf w}\in \mathbb{R}^{d}$ using the dataset 
-		$$\mathcal{D}=\big\{ \left( {\bf x}^{(r)},y^{(r)} \right) \big\}_{r=1}^{m}.$$ 
-		To analyze the properties of the machine learning (ML) method, we typically interpret the data points as realizations of independent and identically distributed (i.i.d.) random variables (RVs), 
-		$$y^{(r)} = h^{(\overline{{\bf w}})}\big( {\bf x}^{(r)} \big) + \bm{\varepsilon}^{(r)}, r=1, \,\ldots, \,m.$$ 
-		We can then interpret the machine learning (ML) method as an estimator $\widehat{{\bf w}}$ 
-		computed from $\mathcal{D}$ (e.g., by solving empirical risk minimization (ERM)). The (squared) bias incurred by 
-		the estimate $\widehat{{\bf w}}$ is then defined as $B^{2} :=\big\| \mathbb{E} \{ \widehat{{\bf w}}  \}- \overline{{\bf w}}\big\|_{2}^{2}$.
+	description={Consider\index{bias} a empirical risk minimization (ERM)-based machine learning (ML) method that  
+				 learns a hypothesis $\hat{h}\in \mathcal{H}$ 
+				 from a given training set. The analysis of the machine learning (ML) method 
+				 is often based on a probabilistic model (such as the independent and identically distributed assumption (i.i.d.\ assumption)) 
+				 for the data generation. Here, data points and, in turn, 
+				 the learnt hypothesis $\hat{h}$ are viewed as 
+				 (realizations of) random variables (RVs). Any property 
+				 $\theta\big(\hat{h}\big)$ of $\hat{h}$, 
+				 such as specific model parameters in a parametric model, 
+				 or the prediction error $y- \hat{h}({\bf x})$ 
+				 for a fixed data point, then also becomes a random variables (RVs). 
+				 The squared bias of a numeric property $\theta\big(\hat{h}\big) \in \mathbb{R}^{r}$ 
+				 is \cite{hastie01statisticallearning,BishopBook}
+				 $$B^{2} :=\big\| \mathbb{E} \big\{ \theta\big(\hat{h}\big) \big\}\!-\!\theta\big(\bar{h}\big)  \big\|_{2}^{2}.$$
+				 Here, $\bar{h}$ is a reference hypothesis which 
+				 could be defined by $\bar{h}({\bf x})=y$ 
+				 for a fixed test data point with feature vector ${\bf x}$ 
+				 and label $y$. 
 					\\ 
 		See also: independent and identically distributed (i.i.d.), random variable (RV), probabilistic model, estimation error.},
 	first={bias},
@@ -5025,8 +5154,8 @@ description = {Consider a dataset
   the feature vector ${\bf x}^{(r)} \in \mathcal{X}$ for $r= 1, \ldots, m$. 
   For a given $\sigma$-algebra $\Sigma$ over the feature space 
   $\mathcal{X}$, the empirical distribution \index{empirical distribution} 
-  of $\mathcal{D}$ is the probability distribution $\mathbb{P}$ defined via 
-   $$\mathbb{P}(\mathcal{A}) = (1/m) \big| \big\{ r: {\bf x}^{(r)} \in \mathcal{A} \big\} \big|, 
+  of $\mathcal{D}$ is the probability distribution $\mathbb{P}^{(\mathcal{D})}$ defined via 
+   $$\mathbb{P}^{(\mathcal{D})}(\mathcal{A}) = (1/m) \big| \big\{ r: {\bf x}^{(r)} \in \mathcal{A} \big\} \big|, 
 	\quad \text{for any } \mathcal{A} \in \Sigma.
 	$$
 	In other words, the empirical distribution assigns to any measurable set 
@@ -5121,22 +5250,23 @@ description = {Consider a dataset
 
 \newglossaryentry{bootstrap}
 {name={bootstrap},
-	description={For\index{bootstrap} the analysis of machine learning (ML) methods, it is often useful to interpret 
-		a given set of data points $\mathcal{D}= \big\{ {\bf z}^{(1)}, \,\ldots, \,{\bf z}^{(m)}\big\}$ 
-		as realizations of independent and identically distributed (i.i.d.) random variables (RVs) drawn from a common probability distribution $\mathbb{P}$. 
-		In practice, the probability distribution $\mathbb{P}$ is unknown and must be estimated from $\mathcal{D}$. 
-		The bootstrap approach uses the histogram of $\mathcal{D}$ as an estimator for 
-		$\mathbb{P}$ \cite{hastie01statisticallearning}, 
+	description={For\index{bootstrap} the analysis of machine learning (ML) methods, it is often 
+	    useful to interpret a given dataset $\mathcal{D}= \big\{ {\bf z}^{(1)}, \,\ldots, \,{\bf z}^{(m)}\big\}$ 
+		as (realizations of) a collection of independent and identically distributed (i.i.d.) random variables (RVs) with 
+		common probability distribution $\mathbb{P}$. In practice, the probability distribution $\mathbb{P}$ 
+		is unknown and must be estimated from $\mathcal{D}$. The idea of the bootstrap 
+		method is to use the empirical distribution $\mathbb{P}^{(\mathcal{D})}$ 
+		of $\mathcal{D}$ as an estimator for $\mathbb{P}$ \cite{hastie01statisticallearning}, 
 		$$ (1/m) \big| r: {\bf z}^{(1)} \in \mathcal{A} \big| \approx \mathbb{P}\left(\mathcal{A}\right).$$
-		By sampling with replacement from $\mathcal{D}$ according to this empirical distribution, 
-		we generate new datasets 
-		$\mathcal{D}^{(1)}, \ldots, \mathcal{D}^{(B)}$, each containing 
-		$m$ data points. We then use each of those datasets 
-		for model training (e.g., via empirical risk minimization (ERM)), 
+		Repeatedly sampling from the empirical distribution, which is equivalent 
+		to sampling with replacement from $\mathcal{D}$ \cite{BoostrapBook}, 
+		results in new datasets $\mathcal{D}^{(1)}, \ldots, \mathcal{D}^{(B)}$, each containing 
+		$m$ data points. We then use each of 
+		those datasets for model training (e.g., via empirical risk minimization (ERM)), 
 		resulting in the learned hypotheses
 		$\widehat{h}^{(1)}, \ldots, \hat{h}^{(B)}.$ 
-        We can use these learned hypotheses to estimate the stability 
-		of the machine learning (ML) method \cite{hastie01statisticallearning}.
+        We can use these learned hypotheses to estimate important characteristics 
+		of a machine learning (ML) method such as bias, variance or generalization gap. \cite{hastie01statisticallearning}.
 		\\
 		See also: independent and identically distributed (i.i.d.), random variable (RV), probability distribution, histogram.},
 	first={bootstrap},
@@ -5331,10 +5461,10 @@ description = {Consider a dataset
 {name={dataset}, plural={datasets},
 	description={A\index{dataset} dataset is a set of distinct data points. 
 	Strictly speaking, a dataset is an unordered collection of data points 
-	that does not contain any repetitions. However, in practice, the term dataset 
-    is often used as a synonym for a sample, i.e., a sequence (or finite list) 
-	of data points and may contain repetitions. 
-	machine learning (ML) methods use datasets to train and validate models. 
+	that does not contain any repetitions. However, in machine learning (ML) literature, the 
+	term dataset is often used as a synonym for a sample, i.e., 
+	a sequence (or finite list) of data points and may contain repetitions. 
+	machine learning (ML) methods use datasets for model training and validation. 
 	The notion of a dataset is broad: data points may represent concrete 
 	physical entities (such as humans or animals) or abstract objects (such as numbers). 
 	For illustration, Fig.~\ref{fig_cows_dataset_dict} depicts a dataset whose 
@@ -5840,22 +5970,22 @@ out of a model $\mathcal{H}$ by minimizing the average loss
 	empirical risk.
     \begin{figure}[H]
     \begin{center}
-        \begin{tikzpicture}[scale=1.0]
+        \begin{tikzpicture}[yscale=0.3]
       
       \def\slope{1.55}
       \def\intercept{-2.05}
       \draw[thick,dashed,domain=0:6.5,variable=\x]
         plot({\x},{\slope*\x+\intercept});
-      \node[above right] at (6.5,{\slope*6.5+\intercept}) {$h(x)$};
+      \node[] at (6.5,{\slope*6.5+\intercept}) {$h(x)$};
       
       \foreach \i/\xval/\yval/\scaleval in {1/1.2/1.8/0.6, 2/3.0/2.6/1.0, 3/5.0/5.7/1.5} {
         \node[circle,draw,fill=blue!60,minimum size=6pt,scale=\scaleval]
           (pt\i) at (\xval,\yval) {};
         \draw[<->,color=blue!70] (\xval,{\slope*\xval+\intercept}) -- (pt\i);
       }
-      \node[below left] at (pt1) {$w^{(1)}$ small};
-      \node[below]      at (pt2) {$w^{(2)}$ medium};
-      \node[above right]at (pt3) {$w^{(3)}$ large};
+      \node[below left] at (pt1) {small $q^{(1)}$};
+      \node[below, yshift=-5pt]  at (pt2) {medium $q^{(2)}$ };
+      \node[below right]at (pt3) {large $q^{(3)}$};
     \end{tikzpicture}
       \caption{Sample weighting assigns each data point of a training set 
 	  a weight $q^{(r)}$. Assigning a small weight 
@@ -6208,6 +6338,7 @@ out of a model $\mathcal{H}$ by minimizing the average loss
 	    a random variable (RV) deviates more than a prescribed amount from its expectation \cite{Wain2019}. 
 		\\
 		See also: probability, random variable (RV), expectation.}, 
+	type=math, 
 	first={concentration inequality},
 	firstplural={concentration inequalities},
 	plural={concentration inequalities},  
@@ -6970,9 +7101,18 @@ allow us to separate the data points using a linear classifier.  \label{fig_lins
 	description={Consider\index{feature matrix} a dataset $\mathcal{D}$ 
 		with $m$ data points with feature vectors 
 		${\bf x}^{(1)}, \,\ldots, \,{\bf x}^{(m)} \in \mathbb{R}^{d}$. 
-		It is convenient to collect the individual feature vectors into a feature 
-		matrix ${\bf X}:=\big({\bf x}^{(1)}, \,\ldots, \,{\bf x}^{(m)}\big)\,^{T}$ 
-		of size $m\times d$.
+		It is convenient to collect the individual feature vectors into 
+		the feature matrix 
+		$${\bf X}:=\big({\bf x}^{(1)}, \,\ldots, \,{\bf x}^{(m)}\big)\,^{T} =
+\begin{pmatrix}
+x^{(1)}_{1} & x^{(1)}_{2} & \cdots & x^{(1)}_{d} \\
+x^{(2)}_{1} & x^{(2)}_{2} & \cdots & x^{(2)}_{d} \\
+\vdots      & \vdots      & \ddots & \vdots \\
+x^{(m)}_{1} & x^{(m)}_{2} & \cdots & x^{(m)}_{d}
+\end{pmatrix}
+\in \mathbb{R}^{m\times d}.$$
+		Note that the feature matrix is of size $m\times d$, i.e., 
+		it has $m$ rows and $d$ columns.
 				\\
 		See also: dataset, data point, feature vector, feature, matrix.},
 	first={feature matrix},
@@ -7524,7 +7664,7 @@ information theory and statistics \cite{coverthomas,Kullback68informationtheory,
  	Since a sample is defined as a sequence, the same data point may 
 	appear more than once. By contrast, some authors in statistics define a sample 
 	as a set of data points, in which case duplicates are not allowed \cite{Everitt2010,OxfordStatisticsDictionary}.
- 	These two views can be reconciled by regarding a sample as a sequence of 
+ 	These two views (sequence vs. set) can be reconciled by regarding a sample as a sequence of 
  	feature–label pairs, $\left( {\bf x}^{(1)},y^{(1)} \right), \ldots, 
  	\left( {\bf x}^{(m)},y^{(m)} \right)$. The $r$-th 
  	pair consists of the features ${\bf x}^{(r)}$ and the label $y^{(r)}$ 
@@ -7766,6 +7906,7 @@ description={Consider the label space is $\mathcal{Y}=\{-1,1\}$ and a classifier
 	plural={base learners},
 	text={base learner} 
 }	
+
 
 
 \newglossaryentry{decisionboundary}
@@ -8356,11 +8497,23 @@ sort={k-means},
 			   denoted by ${\rm span}\left({\bf A}\right)$, is the set of all linear combinations of the 
 			   columns of ${\bf A}$. In other words, 
 			   $$ {\rm span}\left({\bf A}\right) = \{ {\bf A}{\bf w}: {\bf w}\in \mathbb{R}^{d} \}. $$
-			   The column space is a subspace of the Euclidean space $\mathbb{R}^{m}$.
+			   The column space ${\rm span}\left({\bf A}\right)$ of matrix ${\bf A}$ 
+			   is a subspace of the Euclidean space $\mathbb{R}^{m}$.
 			   \\
 		See also: vector space, matrix.},
+	type=math,
 	first={column space},
 	text={column space}
+}
+
+\newglossaryentry{hyperplane}
+{name={hyperplane},
+ description={TBC\index{hyperplane}},
+	first={hyperplane},
+	type=math,
+	plural={hyperplanes}, 
+	firstplural={hyperplanes},
+	text={hyperplane}
 }
 
 \newglossaryentry{subspace}
@@ -8369,6 +8522,7 @@ sort={k-means},
 			   vector space with respect to the same operations as $\mathcal{V}$.
 			   \\
 		See also: vector space.},
+	type=math, 
 	first={subspace},
 	text={subspace}
 }
@@ -8551,16 +8705,16 @@ Linear least squares\index{linear least squares} refers to the
 \newglossaryentry{weightedleastsquares}
 {name={weighted least squares},
  description={Weighted least squares\index{weighted least squares} 
- 	refers to empirical risk minimization (ERM)-based 
+ 			  refers to empirical risk minimization (ERM)-based 
                methods that use the weighted average squared error loss 
-			   $$ \frac{1}{m} \sum_{r=1}^{m} \beta^{(r)} \big( y^{(r)} 
+			   $$ \frac{1}{m} \sum_{r=1}^{m} q^{(r)} \big( y^{(r)} 
 			   - h({\bf x}^{(r)}) \big)^{2} $$   
 			   on a training set $\mathcal{D}= \big\{ \left( {\bf x}^{(1)},y^{(1)} \right), \,\ldots, \,
 			   \left( {\bf x}^{(m)},y^{(m)} \right) \big\}$	
 			   to measure the quality of a hypothesis map $h\in \mathcal{H}$. 
 		 	   \begin{figure}[H]
-		  \centering
-		  \begin{tikzpicture}[scale=0.7, y=0.5cm, x=0.5cm]
+		  		\centering
+		  		\begin{tikzpicture}[scale=0.7, y=0.5cm, x=0.5cm]
 		  		\foreach \x/\y in {
 		  			1/2, 4/3, 7/10
 		  		} {
@@ -8572,20 +8726,20 @@ Linear least squares\index{linear least squares} refers to the
 		  		{$h$};
 		  		\node[above right=2pt and 2pt, red] at (ptB7) {outlier};
 				  
-  \coordinate (lineStart) at (0.5, 3.5);
-  \coordinate (lineEnd)   at (10.5, 3.5);
-  \draw[dashed, thick] (lineStart) -- (lineEnd) node[right] {$h$};
-  
-  
-  \path let \p1 = (ptB7) in coordinate (proj7) at (\x1, 3.5);
-  
-  \draw[<->, very thick, red]
-    (proj7) -- node[right, xshift=2pt, fill=white, inner sep=1pt]
-    {$\beta^{(r)} \big( y^{(r)}\!-\!h\big({\bf x}^{(r)}\big) \big)^{2}$}
-    (ptB7);
-  
-  \fill[red] (proj7) circle (1.2pt);
-  \fill[red] (ptB7)  circle (1.2pt);
+				\coordinate (lineStart) at (0.5, 3.5);
+				\coordinate (lineEnd)   at (10.5, 3.5);
+				\draw[dashed, thick] (lineStart) -- (lineEnd) node[right] {$h$};
+				
+				
+				\path let \p1 = (ptB7) in coordinate (proj7) at (\x1, 3.5);
+				
+				\draw[<->, very thick, red]
+					(proj7) -- node[right, xshift=2pt, fill=white, inner sep=1pt]
+					{$q^{(r)} \big( y^{(r)}\!-\!h\big({\bf x}^{(r)}\big) \big)^{2}$}
+					(ptB7);
+				
+				\fill[red] (proj7) circle (1.2pt);
+				\fill[red] (ptB7)  circle (1.2pt);
 		  \end{tikzpicture}
 		  \caption{Weighted least squares can be used to mitigate the effect of outlier 
 		  data points in a training set. 
@@ -8593,10 +8747,10 @@ Linear least squares\index{linear least squares} refers to the
 		  
 		  \label{fig_weighted_least_squares_dict}}
 		 \end{figure}
-			   The weights $\beta^{(1)}, \,\ldots, \,\beta^{(m)} \in \mathbb{R}_{+}$
+			   The weights $q^{(1)}, \,\ldots, \,q^{(m)} \in \mathbb{R}_{+}$
 			   allow us to emphasize or de-emphasize the contribution of individual data points 
-			   in the training set. Ideally, we assign a small weight $\beta^{(r)}$ 
-			   (de-empahsize) the $r$-th data point if it is an outlier 
+			   in the training set. Ideally, we assign a small weight $q^{(r)}$ 
+			   to the $r$-th data point if it is an outlier 
 			   (see Figure \ref{fig_weighted_least_squares_dict}). 
 			   We obtain different weighted least squares methods by 
 			   using different models in empirical risk minimization (ERM).  
@@ -9137,41 +9291,48 @@ text={expectation}
 
 \newglossaryentry{clusteringerror}
 {name={clustering error}, 
-	description={Consider a clustering method\index{clustering error} that decomposes 
-	a given dataset into clusters. The clustering error is a quantitative 
-	measure for the usefulness of the clusters. Different clustering methods 
-	use different choices for the clustering error. 
+	description={Consider a clustering method\index{clustering error} 
+	that decomposes a given dataset into clusters. 
+	The clustering error is a quantitative measure for the 
+	usefulness of the clusters. Different clustering 
+	methods use different choices for the clustering error. 
 	\begin{figure}
-\centering
-\begin{tikzpicture}[scale=1]
-
-\coordinate (c1) at (0.8,0.7);
-\fill[black] ($(c1)+(-0.05,-0.05)$) rectangle ($(c1)+(0.05,0.05)$);
-\node[above left] at (c1) {${\bm \mu}^{(1)}$};
-\coordinate (c2) at (3.6,1.6);
-\fill[black] ($(c2)+(-0.05,-0.05)$) rectangle ($(c2)+(0.05,0.05)$);
-\node[above left] at (c2) {${\bm \mu}^{(2)}$};
-
-\begin{scope}[shift={(c1)}, xscale=0.9, yscale=0.7, rotate=0]
-  \foreach \dx/\dy in {-0.6/-0.4, 0.1/0.9, 0.7/-0.6} {
-    \fill (\dx,\dy) circle (1.5pt);
-    \draw[dashed, gray] (\dx,\dy) -- (0,0);
-  }
-\end{scope}
-
-\begin{scope}[shift={(c2)}, xscale=0.8, yscale=0.8, rotate=0]
-  \foreach \dx/\dy in {-1.1/-0.5, -0.2/0.6, 0.6/-0.2} {
-    \fill (\dx,\dy) circle (1.5pt);
-    \draw[dashed, gray] (\dx,\dy) -- (0,0);
-  }
-\end{scope}
-\end{tikzpicture}
-\caption{For data point with numeric feature vectors, we can use the 
-average squared Euclidean distance to the nearest cluster centroids as a measure for the clustering error.}
-\end{figure}
-	For example, the hard clustering 
-	method $k$-means measures the clustering error via the average squared 
-	Euclidean distance between a data point (its feature vector) and the nearest cluster centroid. 
+	\centering
+	\begin{tikzpicture}[scale=1]
+	
+	\coordinate (c1) at (0.8,0.7);
+	\fill[black] ($(c1)+(-0.05,-0.05)$) rectangle ($(c1)+(0.05,0.05)$);
+	\node[above left] at (c1) {${{\bf w}}^{(1)}$};
+	\coordinate (c2) at (6.6,1.6);
+	\fill[black] ($(c2)+(-0.05,-0.05)$) rectangle ($(c2)+(0.05,0.05)$);
+	\node[above left] at (c2) {${{\bf w}}^{(2)}$};
+	
+	\begin{scope}[shift={(c1)}, xscale=1.3, yscale=1.3, rotate=0]
+	\foreach \dx/\dy in {-0.6/-0.4, 0.1/0.9, 0.7/-0.6} {
+		\fill (\dx,\dy) circle (1.5pt);
+		\draw[dashed, gray] (\dx,\dy) -- (0,0);
+	}
+	\end{scope}
+	
+	\begin{scope}[shift={(c2)}, xscale=1.5, yscale=1.5, rotate=0]
+	\foreach \dx/\dy in {-1.1/-0.5, -0.2/0.6, 0.6/-0.2} {
+		\fill (\dx,\dy) circle (1.5pt);
+		\draw[dashed, gray] (\dx,\dy) -- (0,0);
+	}
+	\end{scope}
+	\end{tikzpicture}
+	\caption{For data point with numeric feature vectors, we can 
+	     use the average squared Euclidean distance to the nearest 
+		 cluster centroids as a measure for the clustering error.\label{fig_clustering_error_dict}}
+	\end{figure}
+	 For example, the hard clustering method $k$-means measures 
+	 the clustering error via the average squared Euclidean distance 
+	 between the feature vector of a data point 
+	 and the nearest cluster centroid (see Figure \ref{fig_clustering_error_dict}). 
+	 Another construction for the clustering error can be based on a probabilistic model 
+	 such as the Gaussian mixture model (GMM) where the cluster centroids are parameters 
+	 of the underlying probability distribution.\\ 
+	 See also: Gaussian mixture model (GMM), $k$-means, probabilistic model, maximum likelihood.
 	}, 
 	first={clustering error}, 
 	firstplural={clustering errors}, 
@@ -11185,7 +11346,8 @@ See also: function, dataset.},
 		in an aribtrary metric space $\mathcal{A}$. Indeed, we just need to 
 		replace the absolute difference $|a_{r} - a^\star|$ 
 		by the metric $d(a_{r},a^\star)$. 
-		Note that a sequence can only converge if it is a Cauchy sequence CITE. 
+		Note that a sequence can only converge if it is a 
+		Cauchy sequence \cite{RudinBookPrinciplesMatheAnalysis}. 
 		However, not every Cauchy sequence is converging (as this requires 
 		the underlying metric space to be complete).   \\ 
 	See also:  sequence, metric space, Cauchy sequence.},
@@ -11416,3 +11578,65 @@ text={MM}
 	type=math, 
     text={Markov's inequality}  
 }
+
+
+ \newglossaryentry{chebyshevsinequality}
+ {name={Chebyshev's inequality},
+      description={Consider a real-valued random variable (RV) $x$ for which 
+ 	 the second moment $\mathbb{E} \{ x^{2} \}$ exists (and is finite). 
+ 	 The existence of the second moment implies the existence 
+ 	 of a finite expectation $\mu :=\mathbb{E} \{ x\}$ and a finite 
+ 	 variance $\sigma^{2}\!:=\!\mathbb{E} \big\{ \big( x\!-\!\mu \big)^{2} \big\}$ \cite[Prop. 6.12]{folland1999real}. 
+ 	 Chebyshev's inequality\index{Chebyshev's inequality} refers 
+ 	 to the following upper bound on the probability that $x$ 
+ 	 deviates from $\mu$ by more than a given threshold $\eta$ 
+ 	 \cite[Ch. IX]{FellerBook}. 
+ 	 In particular,   
+ 	\begin{equation}
+           \mathbb{P}\left(\big|x - \mu \big| \geq \eta \right) \leq \frac{\sigma^2}{\eta^2} \qquad \mbox{ for some } \eta > 0.
+            \label{eq:chebyshevsinequality_dict}
+     \end{equation}
+ 	This upper bound can be obtained by applying Markov's inequality to 
+ 	the new random variable (RV) $\tilde{x}\!:=\! \big(x\!-\!\mu \big)^2$. 
+  \begin{figure}[htbp]
+   \centering
+	\begin{tikzpicture}
+     \begin{axis}[
+      width=9cm, height=4.2cm,
+      samples=300,
+      axis lines=left,
+	  ylabel={$p^{(x)}\left(x'\right)$},
+      xlabel={$x'$},
+      x label style={at={(axis description cs:1,0)}, anchor=west},
+	  ylabel style={rotate=270,anchor=south,at={(axis description cs:0,1.02)}},
+      xtick={-1.5,0,1.5},
+      xticklabels={$-\eta$,$\mu$,$\eta$},
+      ytick=\empty,
+      ymin=0, ymax=0.45,
+      domain=-4:4,
+      clip=false
+    ]
+      
+      \addplot[name path=pdf, black, very thick] {exp(-0.5*x^2)/sqrt(2*pi)};
+      \addplot[name path=axis, draw=none] {0};
+      
+      \addplot[red!70, opacity=0.25] fill between[of=pdf and axis, soft clip={domain=1.5:4}];
+      \addplot[red!70, opacity=0.25] fill between[of=pdf and axis, soft clip={domain=-4:-1.5}];
+      
+      \draw[densely dashed] (axis cs:0,0) -- (axis cs:0,0.42);
+      \draw[dashed] (axis cs:1.5,0) -- (axis cs:1.5,{exp(-0.5*1.5^2)/sqrt(2*pi)});
+      \draw[dashed] (axis cs:-1.5,0) -- (axis cs:-1.5,{exp(-0.5*1.5^2)/sqrt(2*pi)});
+      
+   
+    \end{axis}
+  	\end{tikzpicture}
+  		\caption{Chebyshev's inquality provides an upper bound for 
+              the tail probability $\mathbb{P}\left(|x-\mu|\ge \eta\right)$ (shaded area) of
+			 a real-valued random variable (RV) $x$ with finite second moment.\label{fig:chebyshev_minimal_dict}} 
+	\end{figure}
+ \\
+     See also: expectation, Markov's inequality, concentration inequality.},
+     first={Chebyshev's inequality},
+	 type=math, 
+     text={Chebyshev's inequality}  
+ }
