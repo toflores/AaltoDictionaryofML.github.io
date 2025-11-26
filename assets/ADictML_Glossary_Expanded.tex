@@ -1248,11 +1248,18 @@ description={A function\index{continuous} $f: \mathbb{R}^{d} \to \mathbb{R}$ is
 
 \newglossaryentry{optmethod}
 {name={optimization method},
-	description={An\index{optimization method} optimization method is an algorithm that 
-		reads in a representation of an optimization problem and delivers an (approximate) solution 
-		as its output \cite{BoydConvexBook}, \cite{BertsekasNonLinProgr}, \cite{nesterov04}.
+	description={
+	An\index{optimization method} optimization method is 
+	an algorithm that takes a representation of an 
+	optimization problem as input and computes an (approximate) 
+	solution as its output. A central example of an optimization 
+	problem in machine learning (ML) is empirical risk minimization (ERM). By applying an appropriate 
+	optimization method to empirical risk minimization (ERM), we obtain a concrete learning 
+	algorithm \cite{BoydConvexBook}, \cite{BertsekasNonLinProgr},
+	\cite{nesterov04}.
 		 \\
 		 See also: algorithm, optimization problem.},
+	type= math, 
 	first={optimization method},
 	firstplural={optimization methods}, 
 	plural={optimization methods}, 
@@ -1985,15 +1992,82 @@ The absolute value $|\langle {\bf u}, {\bf v}\rangle|$ measures the norm of this
 
 \newglossaryentry{ml}
 {name={machine learning (ML)},
-	description={ML\index{machine learning (ML)} aims to predict 
-	 	a label from the features of a data point. ML methods achieve 
-	 	this by learning a hypothesis from a hypothesis space (or model) 
-	 	through the minimization of a loss function \cite{MLBasics}, \cite{HastieWainwrightBook}. 
-	 	One precise formulation of this principle is empirical risk minimization (ERM). Different ML methods are 
-	 	obtained from different design choices for data points (i.e., their features and label), 
-	 	the model, and the loss function \cite[Ch. 3]{MLBasics}.
+	description={ML\index{machine learning (ML)} methods aim to learn (or find) 
+	a ueful hypothesis map $\hat{h}\!\in\!\mathcal{H}$ out of 
+	a model $\mathcal{H}$. The learnt $\hat{h}$ is used to compute 
+	a prediction $\hat{y}=\hat{h}({\bf x})$ for 
+	the label $y$ of a data point. The learning is guided 
+	by some quantitative measure for the loss incurred by the predictions 
+	obtrained from learned hypothesis typically different 
+	from the actual label $y$. Different ML methods use different 
+	design choices for this quantitative measure (or loss function) as well as 
+	different choices for the model and the data points (i.e., 
+	their features and labels) \cite[Ch. 3]{MLBasics}. 
+	\begin{figure}[ht]
+	\centering
+	\hspace*{5mm}
+	\begin{tikzpicture}[
+		node distance=1cm,
+		auto,
+		punkt/.style={
+			rectangle,
+			rounded corners,
+			draw=black,
+			very thick,
+			text width=3cm,
+			minimum height=1cm,
+			align=center
+		}
+		]
+		\coordinate (OR) at (0.00, 1.50);
+		
+		\node[circle,inner sep=0,minimum size={6cm}](a) at (OR) {};
+		\node[circle,inner sep=0,minimum size={8cm}](b) at (OR) {};
+		\node[circle,inner sep=0,minimum size={8cm}](c) at (OR) {};
+		
+		\draw[red,line width=1,dashed] (a.-150) arc (-150:{-150+120}:3cm);
+		\draw[blue,line width=1,dashed] (b.160) arc (160:{160+50}:4cm);
+		\draw[black!30!green,line width=2,dashed] (c.20) arc (20:{160}:4cm);
+		\draw[black!30!blue,line width=2,dashed] ([shift={(-30:6cm)}]OR) arc (-30:{20}:6cm);
+		\draw[black!30!blue,line width=2,dashed] (OR) --([shift={(-30:6cm)}]OR);
+		\draw[black!30!blue,line width=2,dashed] (OR) --([shift={(20:6cm)}]OR);
+		\draw[black!30!green,line width=2,dashed] (OR) -- (c.20);
+		\draw[black!30!green,line width=2,dashed] (OR) -- (c.160);
+		\draw[blue,thin,dashed] (OR) -- (b.160);
+		\draw[blue,thin,dashed] (OR) -- (b.210);
+		\draw[red,thin,dashed] (OR) -- (a.-150);
+		\draw[red,thin,dashed] (OR) -- (a.-30);   
+		
+		\node[punkt] (data) {observations};
+		\node[red,below=0.5cm of data] (data1) {data};
+		\node[above=of data] (dummy) {};
+		\node[punkt,above=1cm of dummy] (hypothesis) {hypothesis};
+		\node[right=1.4cm of dummy] (t) {make prediction} ; 
+		\node[left=1.4cm of dummy] (g) {assess and adapt} ;
+		\node[blue,below=0.5cm of g,anchor=east] (g1) {loss} ; 
+		\node[black!30!blue,below=1cm of t,anchor=west] (g6) {inference} ; 
+		\node[black!30!green,above=1cm of hypothesis,anchor=south] (g3) {model} ; 
+		
+		\draw [->,line width=0.5mm] (hypothesis.east) to [out=0,in=90] (t.north);
+		\draw [->,line width=0.5mm] (t.south) to [out=270,in=0] (data.east);
+		\draw [->,line width=0.5mm] (data.west) to [out=180,in=270] (g.south);
+		\draw [->,line width=0.5mm] (g.north) to [out=90,in=180] (hypothesis.west);
+		\end{tikzpicture}
+		\vspace*{-9mm}
+		\caption{ML learns a hypothesis out of a model (or hypothesis space) 
+			by trying to minimize the loss incurred by the predictions 
+			for the labels of data points. The predictions are 
+			comptued solely from the features of the data points.}
+		\label{fig_AlexMLBP_dict}
+	\end{figure}
+	Another distinction between ML methods is how they access data points during 
+	learning. For example, some methods have access to a complete dataset 
+	during training which allows them to use empirical risk minimization (ERM) \cite{MLBasics}, \cite{HastieWainwrightBook}. 
+	In contrast, online learning methods access datas 
+	sequentially and, in turn, update the learned hypothesis 
+	whenever a new data point arrives \cite{PredictionLearningGames,HazanOCO,Bottou99}.
 	 			\\ 
-		See also: model, data, loss.},
+		See also: model, data, loss, empirical risk minimization (ERM), online learning.},
 	first={machine learning (ML)},
 	text={ML}
 } 
@@ -3987,14 +4061,46 @@ text={integrable}
 \newglossaryentry{graph}
 {name={graph},
  description={A graph\index{graph} $\mathcal{G}= \left( \mathcal{V},\mathcal{E}\right)$ 
- is a pair that consists of a node set $\mathcal{V}$ and an edge set $\mathcal{E}$. 
- In its most general form, a graph is specified by a map that 
- assigns each edge $e\in \mathcal{E}$ a pair of nodes \cite{RockNetworks}. 
- Unless specified otherwise, the term graph refers to an undirected graph. 
- A simple undirected graph is obtained by identifying each edge $e\in \mathcal{E}$ 
- with a set that contains two different nodes $\{i,i'\}$. 
- Weighted graphs also specify numeric weights $\edgeweight_{e}$ for each 
- edge $e\in \mathcal{E}$.
+              consists of a node set $\mathcal{V}$ and an edge set $\mathcal{E}$.
+			  In its most general form, a graph is specified by a map 
+			  that assigns to each edge $e\in \mathcal{E}$ either an 
+			  unordered pair of nodes (yielding an undirected graph) or an 
+			  ordered pair of nodes (yielding a directed graph) \cite{RockNetworks}.
+			  Unless stated otherwise, we use the term graph to refer 
+			  to an undirected graph. A simple undirected graph is 
+			  obtained by representing each edge $e\in \mathcal{E}$ 
+			  as a set of two distinct nodes ${i,i'}$. 
+			  \begin{figure}[htbp] 
+				\centering
+			  \begin{tikzpicture}[scale=1,
+					node/.style={circle, fill=black, inner sep=1.9pt},
+					lab/.style={anchor=west, xshift=3pt}
+					]
+					
+					\node[node] (v1) at (0,0) {};
+					\node[node] (v2) at (2,0) {};
+					\node[node] (v3) at (1,1.5) {};
+					\node[node] (v4) at (3,1.5) {};
+					
+					\node[anchor=north] at (v1) {$\nodeidx_1$};
+					\node[anchor=north] at (v2) {$\nodeidx_2$};
+					\node[anchor=south] at (v3) {$\nodeidx_3$};
+					\node[anchor=south] at (v4) {$\nodeidx_4$};
+					
+					\draw [line width=1pt] (v1) -- (v2);
+					\draw (v2) -- (v3);
+					\draw (v3) -- (v1);
+					\draw (v2) -- (v4);
+				\end{tikzpicture}
+				\caption{A simple undirected graph with four nodes 
+				$\mathcal{V}= \{\nodeidx_1, \nodeidx_2, \nodeidx_3, \nodeidx_4\}$ 
+				and four edges $\mathcal{E}= \{\{\nodeidx_1,\nodeidx_2\},
+				\{\nodeidx_2,\nodeidx_3\}, \{\nodeidx_3,\nodeidx_1\}, 
+				\{\nodeidx_2,\nodeidx_4\}\}$.}
+			\end{figure}
+			  Graphs may also attach a numerical value, or weight, to 
+			  each edge $e\in \mathcal{E}$. A graph equipped with such 
+			  edge weights is called a weighted graph.
 					\\ 
 		See also: map, weights.},
  first={graph},
@@ -4398,12 +4504,13 @@ text={integrable}
 
 \newglossaryentry{onlinelearning}
 {name={online learning},
-	description={Some machine learning (ML) methods \index{online learning} are designed to process data in a sequential 
-		manner, updating their model parameters one at a time, as new data points become available. 
-		A typical example is time-series data, such as daily minimum and maximum temperatures 
-		recorded by an Finnish Meteorological Institute (FMI) weather station. These values form a chronological sequence 
-		of observations. During each time step $t$, online learning methods update (or refine)  
-		the current hypothesis $h^{(t)}$ (or model parameters ${\bf w}^{(t)}$) 
+	description={Some machine learning (ML) methods \index{online learning} are designed to 
+	    process data in a sequential manner, updating their model parameters 
+		one at a time, as new data points become available. A typical example 
+		is time-series data, such as daily minimum and maximum 
+		temperatures recorded by an Finnish Meteorological Institute (FMI) weather station. These values form 
+		a chronological sequence of observations. During each time step $t$, 
+		online learning methods update (or refine) the current hypothesis $h^{(t)}$ (or model parameters ${\bf w}^{(t)}$) 
 		based on the newly observed data point ${\bf z}^{(t)}$. 
 		\\ 
 		See also: online gradient descent (online GD), online algorithm. },
@@ -5156,7 +5263,7 @@ description = {Consider a dataset
   $\mathcal{X}$, the empirical distribution \index{empirical distribution} 
   of $\mathcal{D}$ is the probability distribution $\mathbb{P}^{(\mathcal{D})}$ defined via 
    $$\mathbb{P}^{(\mathcal{D})}(\mathcal{A}) = (1/m) \big| \big\{ r: {\bf x}^{(r)} \in \mathcal{A} \big\} \big|, 
-	\quad \text{for any } \mathcal{A} \in \Sigma.
+	\quad \text{for any event } \mathcal{A} \in \Sigma.
 	$$
 	In other words, the empirical distribution assigns to any measurable set 
 	$\mathcal{A} \in \Sigma$ the fraction of data points in $\mathcal{D}$ 
@@ -6345,6 +6452,22 @@ out of a model $\mathcal{H}$ by minimizing the average loss
 	text={concentration inequality}
 }
 
+\newglossaryentry{lda} 
+{name={linear discriminant analysis (LDA)}, 
+ description={LDA \index{linear discriminant analysis (LDA)} is a classical 
+             feature learning method \cite{BishopBook,Fisher1936Taxonomic}. 
+			 In the context of binary classification problems, 
+			 LDA seeks a linear feature map $\phi^{({\bf w})}: \mathbb{R}^{d} 
+			 \rightarrow \mathbb{R}: {\bf x}\mapsto {\bf w}^{T} {\bf x}$, 
+			 such that the new feature $\phi^{({\bf w})}({\bf x})$ 
+			 optimally allows to predict the label of a data point. \\
+			See also: dimensionality reduction, feature learning, self-supervised learning. 
+ }, 
+ first = {linear discriminant analysis (LDA)},
+ text = {LDA}, 
+ firstplural={linear discriminant analyses (LDAs)},
+ plural={LDAs}
+}
 
 \newglossaryentry{randomprojection} 
 {name={random projection}, 
@@ -6820,7 +6943,7 @@ out of a model $\mathcal{H}$ by minimizing the average loss
  
  \newglossaryentry{lasso}
  {name={least absolute shrinkage and selection operator (Lasso)}, 
-	description={The Lasso\index{least absolute shrinkage and selection operator (Lasso)} is an 
+	description={The Lasso \cite{Tibshirani1996} \index{least absolute shrinkage and selection operator (Lasso)} is an 
 		instance of structural risk minimization (SRM). It learns the weights ${\bf w}$ of a linear map 
 		$h({\bf x}) = {\bf w}\,^{T} {\bf x}$ from a training set. 
 		Lasso is obtained from linear regression by adding the scaled $\ell_{1}$-norm 
@@ -7119,6 +7242,17 @@ x^{(m)}_{1} & x^{(m)}_{2} & \cdots & x^{(m)}_{d}
 	text={feature matrix} 
 }
 
+\newglossaryentry{kmeans++}
+{name={$k$-means++}, 
+ sort={kmeans++},
+	description={TBC\index{$k$-means++}.
+				\\
+		See also: $k$-means.},
+	first={$k$-means++},
+	text={$k$-means++} 
+}
+
+
 \newglossaryentry{dbscan}
 {name={density-based spatial clustering of applications with noise (DBSCAN)}, 
 	description={DBSCAN\index{density-based spatial clustering of applications with noise (DBSCAN)} 
@@ -7395,15 +7529,16 @@ this pmf exactly. Such datasets could arise as realizations of
 independent and identically distributed (i.i.d.) random variables (RVs) sharing the common pmf $p^{(x)}\left(\cdot\right)$. 
 \label{fig_pmf_dict}}
 \end{figure}
-The pmf satisfies $\sum_{x' \in \mathcal{X}} p^{(x)}\left(x'\right) = 1$. 
-A pmf defined over the set $\mathcal{X}$ can be viewed as an idealized description of any sufficiently long 
-dataset $\mathcal{D}= \{x^{(1)}, \ldots, x^{(m)}\}$, 
-whose relative frequencies of each value $x' \in \mathcal{X}$ 
-are close to the corresponding pmf value $p^{(x)}\left(x'\right)$, 
+A pmf always satisfies $\sum_{x' \in \mathcal{X}} p^{(x)}\left(x'\right) = 1$. 
+We can view a pmf as representing a collection of (sufficiently long)  
+datasets. This collection contains any 
+$\mathcal{D}= \{x^{(1)}, \ldots, x^{(m)}\}$, 
+with the relative frequencies of every value $x' \in \mathcal{X}$ 
+being close to the corresponding pmf value $p^{(x)}\left(x'\right)$, 
 $$ \frac{\big|r\in \{1,\ldots,m\}: x^{(r)}= x' \big|}
 {m} \approx p^{(x)}\left(x'\right).$$ 
-A rigorous treatment of this approximation principle is at the heart 
-information theory and statistics \cite{coverthomas,Kullback68informationtheory,CIT-004}.
+The study of this set of typical datasets, naturally associated with a given pmf, 
+is at the heart information theory and statistics \cite{coverthomas,Kullback68informationtheory,CIT-004}.
 				\\
 		See also: random variable (RV), probability distribution, probability, probabilistic model.},
 	first={probability mass function (pmf)},
@@ -8275,28 +8410,42 @@ sort={k-means},
 }
 
 	
-\newglossaryentry{samplecovmtx}
-{name={sample covariance matrix}, 
-	description={The\index{sample covariance matrix} 
-		sample covariance matrix $\widehat{\bf \Sigma} \in \mathbb{R}^{d\times d}$ 
-		for a given set of feature vectors ${\bf x}^{(1)}, \,\ldots, \,{\bf x}^{(m)} \in \mathbb{R}^{d}$ is defined as 
-		$$\widehat{\bf \Sigma} = \frac{1}{m} \sum_{r=1}^{m} ({\bf x}^{(r)}\!-\!\widehat{{\bf m}}) ({\bf x}^{(r)}\!-\!\widehat{{\bf m}})\,^{T}.$$ 
-		Here, we use the sample mean $\widehat{{\bf m}}$. 
-				\\
-		See also: sample, covariance matrix, feature vector, sample mean.},
-	first={sample covariance matrix},
-	text={sample covariance matrix} 
-}
-
 \newglossaryentry{covmtx}
 {name={covariance matrix}, 
-	description={The\index{covariance matrix} covariance matrix of a random variable (RV) ${\bf x}\in \mathbb{R}^{d}$ 
-		is defined as $\mathbb{E} \bigg \{ \big( {\bf x}- \mathbb{E} \big\{ {\bf x}\big\} \big)  \big({\bf x}- \mathbb{E} \big\{ {\bf x}\big\} \big)\,^{T} \bigg\}$.
+	description={The\index{covariance matrix} covariance matrix of 
+	       a random variable (RV) ${\bf x}\in \mathbb{R}^{d}$ is defined as 
+		   the expectation (if it exists)
+		   $$\mathbb{E} \bigg \{ \big( {\bf x}- \mathbb{E} \big\{ {\bf x}\big\} \big)  
+		   \big({\bf x}- \mathbb{E} \big\{ {\bf x}\big\} \big)\,^{T} \bigg\}.$$
 				\\
 		See also: covariance, matrix, random variable (RV).},
 	first={covariance matrix},
+	plural={covariance matrices},
+	firstplural={covariance matrices},
+	type=math, 
 	text={covariance matrix} 
 }
+
+\newglossaryentry{samplecovmtx}
+{name={sample covariance matrix}, 
+	description={Consider a dataset consisting of data points 
+				 characterized by feature vectors ${\bf x}^{(1)}, \,\ldots, \,{\bf x}^{(m)} \in \mathbb{R}^{d}$.	
+				 The\index{sample covariance matrix} sample covariance 
+				 matrix of $\mathcal{D}$ is defined as the covariance matrix with 
+				 respect to the empirical distribution $\mathbb{P}^{(\mathcal{D})}$ 
+				 induced by $\mathcal{D}$. 
+				 It is given explicitly by 
+					$$\widehat{{\bf C}}= \frac{1}{m} \sum_{r=1}^{m} ({\bf x}^{(r)}\!-\!\widehat{{\bf m}}) ({\bf x}^{(r)}\!-\!\widehat{{\bf m}})\,^{T}.$$ 
+				Here, we use the sample mean $\widehat{\bm \mu}$. 
+	\\
+		See also: covariance, matrix, random variable (RV).},
+	first={sample covariance matrix},
+	plural={sample covariance matrices},
+	firstplural={sample covariance matrices},
+	type=math, 
+	text={sample covariance matrix} 
+}
+
 	
 \newglossaryentry{highdimregime}
 {name={high-dimensional regime}, 
@@ -8423,22 +8572,85 @@ sort={k-means},
 
 \newglossaryentry{em}
 {name={expectation–maximization (EM)}, 
-	description={\index{expectation–maximization (EM)} 
-		Consider a probabilistic model $\mathbb{P}\left({\bf z}; {\bf w}\right)$ for the data points $\mathcal{D}$ generated in some 
-		machine learning (ML) application. The maximum likelihood estimator for the model parameters ${\bf w}$ is obtained by maximizing 
-		$\mathbb{P}\left(\mathcal{D}; {\bf w}\right)$. However, the resulting optimization problem might be computationally 
-		challenging. EM approximates the maximum likelihood estimator by introducing a latent 
-		random variable (RV) ${\bf z}$ such that maximizing $\mathbb{P}\left(\mathcal{D},{\bf z}; {\bf w}\right)$ would be easier 
-		\cite{hastie01statisticallearning}, \cite{BishopBook}, \cite{GraphModExpFamVarInfWainJor}. Since we 
-		do not observe ${\bf z}$, we need to estimate it from the observed dataset $\mathcal{D}$ 
-		using a conditional expectation. The resulting estimate $\widehat{{\bf z}}$ is then used to 
-		compute a new estimate $\widehat{{\bf w}}$ by solving $\max_{{\bf w}} \mathbb{P}\left(\mathcal{D}, \widehat{{\bf z}}; {\bf w}\right)$. 
-		The crux is that the conditional expectation $\widehat{{\bf z}}$ depends on the model parameters $\widehat{{\bf w}}$, 
-		which we have updated based on $\widehat{{\bf z}}$. Thus, we have to recalculate $\widehat{{\bf z}}$, 
-		which, in turn, results in a new choice $\widehat{{\bf w}}$ for the model parameters. In practice, 
-		we repeat the computation of the conditional expectation (i.e., the E-step) and the update 
-		of the model parameters (i.e., the M-step) until some stopping criterion is met. 
-				\\
+	description={\index{expectation–maximization (EM)}
+	    The EM algorithm is an iterative optimization method for 
+		approximately solving certain maximum likelihood optimization problems 
+		that are difficult to solve directly \cite[Sec. 9.4]{BishopBook}, \cite[Sec. 11.4.7]{Murphy2012}.
+	    To motivate the EM algorithm and explain its construction, 
+		consider a machine learning (ML) application involving a single observed data point 
+		with feature $x\in \mathcal{X}$, where $\mathcal{X}$ 
+		is a finite feature space. The data generation 
+		is modeled via a probabilistic model that consists of a random variable (RV) $x'$ 
+		with probability mass function (pmf) $p^{(x')}\left(\cdot;{\bf w}\right)$. Here, 
+		the actual model parameters ${\bf w}\in \mathcal{W}$ - used for the data 
+		generation via sampling from $p^{(x')}\left(\cdot;{\bf w}\right)$ - are unknown. A widely 
+		used approach for estimating these model parameter is via the solutions of the maximum likelihood 
+		problem
+		\begin{equation}
+			\label{equ_def_ML_EM_dict}
+			\min_{{\bf w}\in \mathcal{W}} - \log p^{(x')}\left(x;{\bf w}\right).
+		\end{equation}
+		For some probabilistic models, such as a Gaussian mixture model (GMM), this optimization problem can be 
+		difficult to solve directly. As a work-around, one can often introduce an auxiliary 
+		attribute $y\in \mathcal{Y}$, generated via some random variable (RV) $y'$, 
+		such that the corresponding probabilistic model $p^{(x',y')}\left(\cdot,\cdot;{\bf w}\right)$ 
+		yields a much easier maximum likelihood problem 
+		\begin{equation}
+			\label{equ_def_complete_EM_dict}
+			\min_{{\bf w}\in \mathcal{W}} 
+			- \log p^{(x',y')}\left(x,y;{\bf w}\right).
+		\end{equation}
+		The attribute $y$ is introduced solely to simplify 
+		\eqref{equ_def_complete_EM_dict}, but it is not observed in practice—only the 
+		feature $x$ is available. Thus, we cannot solve \eqref{equ_def_complete_EM_dict} 
+		directly as we do not know which value $y$ to plug into the probability mass function (pmf) 
+		$ p^{(x',y')}\left(x,y;{\bf w}\right)$. 
+		The EM method resolves this dilemma by alternating between two steps:
+		\begin{itemize}
+			\item {\bf (E-step)} computing a “soft’’ estimate of the auxiliary 
+			attribute $y$ in the form of the posterior 
+			$p^{(y'|x')}\left(\cdot;\widehat{{\bf w}}\right)$
+			using the current choice $\widehat{{\bf w}}$ for the model parameters, and 
+			\item {\bf (M-step)} minimizing a surrogate objective function derived from this posterior.
+		\end{itemize}
+		The completion of these two steps constitutes one full iteration of 
+		the EM method. 
+		In more detail, the E-step produces the function
+		\[
+		Q({\bf w}\mid \widehat{{\bf w}})
+		:=- \sum_{y\in \mathcal{Y}} 
+		p^{(y'|x')}\left(y;\widehat{{\bf w}}\right)
+		\log\!\Big(
+		p^{(x',y')}\left(x,y;{\bf w}\right)
+		/p^{(y'|x')}\left(y;\widehat{{\bf w}}\right)
+		\Big),
+		\]
+		and the M-step minimizes $Q({\bf w}\mid \widehat{{\bf w}})$ over 
+		${\bf w}\in \mathcal{W}$.
+		This function satisfies two key properties \cite[Sec. 9.4]{BishopBook},\cite[Sec. 11.4.7]{Murphy2012}:
+		\begin{itemize}
+			\item {\bf Upper bound:}
+			\begin{equation}
+				\label{equ_upper_bound_EM_dict}
+				Q({\bf w}\mid \widehat{{\bf w}})
+				\geq
+				- \log p^{(x')}\left(x;{\bf w}\right)
+				\quad \text{for all } {\bf w}\in \mathcal{W}.
+			\end{equation}
+			\item {\bf Tightness:}
+			\begin{equation}
+				\label{equ_upper_bound_EM_dict_tight}
+				Q(\widehat{{\bf w}}\mid \widehat{{\bf w}})
+				=- \log p^{(x')}\left(x;\widehat{{\bf w}}\right).
+			\end{equation}
+		\end{itemize}
+		To summarize, during each iteration, EM minimizes an upper-bounding 
+		surrogate objective function that is tight at the current iterate $\widehat{{\bf w}}$. 
+		Thus, EM is a majorize–minimize (MM) method for approximately solving \eqref{equ_def_ML_EM_dict}. 
+		The above construction and analysis of EM can be extended to more 
+		general settings involving multiple data points 
+		and infinite feature spaces such as $\mathbb{R}^{d}$; see \cite[Sec. 11.4.7]{Murphy2012} for details. 
+			\\
 		See also: probabilistic model, maximum likelihood, optimization problem. },
 	first={EM},
 	text={EM}
@@ -9687,31 +9899,46 @@ text={expectation}
 
 \newglossaryentry{onlineGD}
 {name={online gradient descent (online GD)}, 
-	description={Consider \index{online gradient descent (online GD)} an machine learning (ML) method that learns model parameters 
-		${\bf w}$ from some parameter space $\mathcal{W}\subseteq \mathbb{R}^{d}$. 
-		The learning process uses data points ${\bf z}^{(t)}$ that arrive at consecutive time instants $t=1, \,2, \,\dots$. 
-		Let us interpret the data points ${\bf z}^{(t)}$ as independent and identically distributed (i.i.d.) copies 
-		of a random variable (RV) ${\bf z}$. The risk $\mathbb{E} \{ L\left({\bf z},{\bf w}\right) \}$ of a 
-		hypothesis $h^{({\bf w})}$ can then (under mild conditions) be obtained as the limit 
-		$\lim_{T\rightarrow \infty} (1/T)\sum_{t=1}\,^{T} L\left({\bf z}^{(t)},{\bf w}\right)$. 
-		We might use this limit as the objective function for learning the model parameters ${\bf w}$. 
-		Unfortunately, this limit can only be evaluated if we wait infinitely long in order to collect all data points. 
-		Some machine learning (ML) applications require methods that learn online, i.e., as soon as a new data point ${\bf z}^{(t)}$ 
-		arrives at time $t$, we update the current model parameters ${\bf w}^{(t)}$. Note that 
-		the new data point ${\bf z}^{(t)}$ contributes the component $L\left({\bf z}^{(t)},{\bf w}\right)$ 
-		to the risk. As its name suggests, online gradient descent (GD) updates ${\bf w}^{(t)}$ via a (projected) gradient step such that
+	description={Consider \index{online gradient descent (online GD)} an machine learning (ML) 
+	             method that learns model parameters ${\bf w}$ from some 
+				 parameter space $\mathcal{W}\subseteq \mathbb{R}^{d}$. 
+		         The learning process uses data points ${\bf z}^{(t)}$ 
+				 that arrive at consecutive time instants $t=1, \,2, \,\dots$. 
+				 Let us interpret the (generation of) data points ${\bf z}^{(t)}$ 
+				 as independent and identically distributed (i.i.d.) random variables (RVs) with a common probability distribution $\mathbb{P}^{({\bf z})}$. 
+				 The risk $\mathbb{E} \{ L\left({\bf z},{\bf w}\right) \}$ of a 
+				hypothesis $h^{({\bf w})}$ can then (under mild conditions) 
+				be obtained as the limit 
+		$$\lim_{T\rightarrow \infty} (1/T)\sum_{t=1}^{T} L\left({\bf z}^{(t)},{\bf w}\right).$$ 
+				We might use this limit as the objective function for learning the 
+				model parameters ${\bf w}$. Unfortunately, the above limit can 
+				only be evaluated if we wait infinitely long in order to collect all data points. 
+				However, many machine learning (ML) applications require methods that learn online: 
+				as soon as a new data point ${\bf z}^{(t)}$ arrives at 
+				time $t$, we update the current model parameters ${\bf w}^{(t)}$. 
+				Note that the new data point ${\bf z}^{(t)}$ contributes 
+				the component $L\left({\bf z}^{(t)},{\bf w}\right)$ to the risk. 
+				As its name suggests, online gradient descent (GD) updates ${\bf w}^{(t)}$ via 
+				a (projected) gradient step such that
 		\begin{equation} 
 			\label{equ_def_ogd_dict}
  			{\bf w}^{(t+1)} :=P_{\mathcal{W}}\big( {\bf w}^{(t)} - \lrate_{t} \nabla_{{\bf w}} L\left({\bf z}^{(t)},{\bf w}\right)\big) . 
 		\end{equation} 
-		Note that \eqref{equ_def_ogd_dict} is a gradient step for the current component $L\left({\bf z}^{(t)},\cdot \right)$ 
-		of the risk. The update \eqref{equ_def_ogd_dict} ignores all previous components $L\left({\bf z}^{(t')},\cdot \right)$, 
-		for $t' < t$. It might therefore happen that, compared with ${\bf w}^{(t)}$, the updated model parameters 
-		${\bf w}^{(t+1)}$ increase the retrospective average loss $\sum_{t'=1}^{t-1} L\left({\bf z}^{(t')},\cdot \right)$. 
-		However, for a suitably chosen learning rate $\lrate_{t}$, online gradient descent (GD) can be shown 
-		to be optimal in practically relevant settings. By optimal, we mean that the model parameters 
-		${\bf w}^{(T+1)}$ delivered by online gradient descent (GD) after observing $T$ data points ${\bf z}^{(1)}, \,\ldots, \,{\bf z}^{(T)}$ 
-		are at least as good as those delivered by any other learning method \cite{HazanOCO}, \cite{GDOptimalRakhlin2012}. 
+		Note that \eqref{equ_def_ogd_dict} is a gradient step for the 
+		current component $L\left({\bf z}^{(t)},\cdot \right)$ 
+		of the risk. The update \eqref{equ_def_ogd_dict} ignores all 
+		previous components $L\left({\bf z}^{(t')},\cdot \right)$, 
+		for $t' < t$. It might therefore happen that, compared 
+		with ${\bf w}^{(t)}$, the updated model parameters 
+		${\bf w}^{(t+1)}$ increase the retrospective average 
+		loss $\sum_{t'=1}^{t-1} L\left({\bf z}^{(t')},\cdot \right)$. 
+		However, for a suitably chosen learning rate $\lrate_{t}$, 
+		online gradient descent (GD) can be shown to be optimal in practically relevant 
+		settings. By optimal, we mean that the model parameters 
+		${\bf w}^{(T+1)}$ delivered by online gradient descent (GD) after observing 
+		$T$ data points ${\bf z}^{(1)}, \,\ldots, \,{\bf z}^{(T)}$ 
+		are at least as good as those delivered by any other learning method 
+		\cite{HazanOCO}, \cite{GDOptimalRakhlin2012}. 
 		\begin{figure}[H]
 		\begin{center}
 		\begin{tikzpicture}[x=1.5cm,scale=1.5, every node/.style={font=\footnotesize}]
@@ -9741,11 +9968,59 @@ text={expectation}
 
 \newglossaryentry{pca}
 {name={principal component analysis (PCA)}, 
-	description={PCA\index{principal component analysis (PCA)} 
-		determines a linear feature map such that the new features 
-		allow us to reconstruct the original features with the minimum reconstruction error \cite{MLBasics}.
-				\\
-		See also: feature map, feature, minimum, Johnson--Lindenstrauss (JL) lemma.},
+	description={Consider a dataset 
+				$$\mathcal{D}= \big\{ {\bf x}^{(1)}, \,\ldots, \,{\bf x}^{(m)} \big\}$$
+			    constituted by data points characterized by feature vectors 
+				${\bf x}^{(r)} \in \mathbb{R}^{d}$, for $r=1,\ldots,m$.
+				PCA\index{principal component analysis (PCA)} determines, for a given number 
+				$d' < d$ a linear feature map 
+				$${\bf \Phi}^{({\bf W})}: \mathbb{R}^{d} \rightarrow 
+				\mathbb{R}^{d'}: {\bf x}\mapsto {\bf W}{\bf x}$$ 
+				such that the new feature vectors 
+				$\mathbf{z}^{(r)} = {\bf W}{\bf x}^{(r)}$ 
+				allow us to reconstruct the original features with  
+				minimum linear reconstruction error \cite{MLBasics,hastie01statisticallearning,BishopBook}
+				$$\min_{{\bf R}\in \mathbb{R}^{d\times d'}} 
+				\sum_{r=1}^{m} 
+				\mleft\lVert {\bf x}^{(r)}- {\bf R}{\bf W}{\bf x}^{(r)} \mright\rVert_{2}^{2}.$$ 
+				We can view PCA as a form of empirical risk minimization (ERM) using the loss function 
+				$L\left({\bf x},{\bf W}\right) = \mleft\lVert {\bf x}- \widehat{{\bf R}} {\bf W}{\bf x}\mright\rVert_{2}^{2}$ with a 
+				reconstruction matrix $\widehat{{\bf R}}$ 
+				that achieves the above minimum reconstruction error. It turns 
+				out that this empirical risk minimization (ERM) problem can be solved by a matrix  
+				${\bf W}= \big(\mathbf{u}^{(1)},\ldots,\mathbf{u}^{(d')}\big)^{T}$ 
+				whose rows are given by $d'$ 
+				eigenvectors corresponding to the $d'$ largest 
+				eigenvalues of the matrix 
+				$$\widehat{\mathbf{Q}} = (1/m) \sum_{r=1}^{m} 
+				{\bf x}^{(r)} \big( {\bf x}^{(r)}\big)^{T}
+				={\bf X}^{T} {\bf X}.$$ 
+				Note that $\widehat{\mathbf{Q}}$ coincides with the sample covariance matrix of 
+				$\mathcal{D}$ if its sample mean vanishes. The positive semi-definite (psd) matrix 
+				$\widehat{\mathbf{Q}}$ allows for an eigenvalue decomposition (EVD) of the form 
+				\cite{MeyerMatrixAnalysis,HornMatAnalysis} 
+				$$\widehat{\mathbf{Q}}\!=\!\sum_{j=1}^{d} \lambda_{j} 
+					\mathbf{u}^{(d)} \big( \mathbf{u}^{(d)} \big)^{T}=
+					\begin{pmatrix}
+					\mathbf{u}^{(1)} & \cdots & \mathbf{u}^{(d)}
+					\end{pmatrix}
+					\begin{pmatrix}
+					\lambda_{1}        &        & 0 \\
+										& \ddots &   \\
+					0                 &        & \lambda_{d}
+					\end{pmatrix}
+					\begin{pmatrix}
+					\big(\mathbf{u}^{(1)}\big)^{T} \\
+					\vdots                         \\
+					\big(\mathbf{u}^{(d)}\big)^{T}
+					\end{pmatrix}.$$
+				This decomposition consists of decreasing non-negative eigenvalues 
+				$\lambda_{1} \geq \lambda_{2} \geq \,\ldots, \,\geq \lambda_{d} 
+				\geq 0$ and corresponding eigenvectors $\mathbf{u}^{(1)},\ldots,\mathbf{u}^{(d)}$ 
+				that form an orthonormal basis of $\mathbb{R}^{d}$.
+				 \\
+		See also: feature map, feature learning, dimensionality reduction,  
+		eigenvalue decomposition (EVD).},
 	first={principal component analysis (PCA)},
 	text={PCA} 
 }
@@ -11348,8 +11623,8 @@ See also: function, dataset.},
 		by the metric $d(a_{r},a^\star)$. 
 		Note that a sequence can only converge if it is a 
 		Cauchy sequence \cite{RudinBookPrinciplesMatheAnalysis}. 
-		However, not every Cauchy sequence is converging (as this requires 
-		the underlying metric space to be complete).   \\ 
+		However, not every Cauchy sequence is converging unless 
+		the underlying metric space is complete.   \\ 
 	See also:  sequence, metric space, Cauchy sequence.},
 	first={convergence},
 	type =math,
@@ -11640,3 +11915,54 @@ text={MM}
 	 type=math, 
      text={Chebyshev's inequality}  
  }
+
+
+\newglossaryentry{hoeffdingsinequality}
+{name={Hoeffding's inequality},
+     description={\index{Hoeffding's inequality} Hoeffding's inequality \cite{hoeffding1963probability} is a fundamental concentration inequality that provides an upper bound on the probability that a sum (or average) of independent, bounded random variables (RVs)  deviates from its mean by more than some threshold. 
+     Let $x_1,\dots,x_n$ be independent real-valued random variables (RVs) $x_i$ taking values in $[a_i,b_i] \subset \mathbb{R}$, and $S_n :=\sum_{i=1}^n x_i$ and $\mathbb{E} \{S_n\} = \sum_{i=1}^n \mathbb{E} \{x_i\}$. Then, Hoeffding's inequality \cite[Theorem 2.2.6]{vershynin2018high} states that
+        \begin{equation}
+                \mathbb{P}\left( |S_n - \mathbb{E} \{S_n\}| \geq t \right) 
+            \leq 2 \exp \left( -\frac{2 t^2}{\sum_{i=1}^n (b_i - a_i)^2} \right) \qquad \forall t > 0.
+            \label{eq:hoeffding_sum}
+        \end{equation}
+    Hoeffding's typically provides sharper bounds than Chebyshev's inequality, but is more restrictive by assuming bounded random variables (RVs).
+    In the context of machine learning (ML), this result is useful for deriving guarantees for empirical risk minimization (ERM)  and in the context of MAB.  \\
+    See also: concentration inequality, probability, random variable (RV), expectation, probability space, Markov's inequality, Chebyshev's inequality.},
+    first={Hoeffding's inequality},
+    text={Hoeffding's inequality}  
+}
+
+\newglossaryentry{rgg}
+{name={Random geometric graph (RGG)},
+    description={A RGG graph\index{Random geometric graph (RGG)} is a probabilistic model for graphs built from nodes randomly placed in a metric space. Given a metric space, the RGG is characterized by the number of nodes, the connection radius, and the probability distribution describing the node placement. 
+    \begin{figure}
+    \centering
+    \begin{tikzpicture}[x=0.6cm,y=0.6cm]
+        \draw (-5,-5) rectangle (5,5);
+        
+        \node[below left] at (-5,-5) {\small $-5$};
+        \node[above left]  at (-5, 5) {\small $5$};
+        \node[below right] at ( 5,-5) {\small $5$};
+        
+        \fill (-2.0,-3.5) circle (2pt);
+        \draw (-2.0,-3.5) circle (2.5);
+        \node[anchor=east] at (-2.0,-3.5) {\small 1};
+        \fill (-0.5,-3.3) circle (2pt);
+        \draw (-0.5,-3.3) circle (2.5);
+        \node[anchor=west] at (-0.5,-3.3) {\small 2};
+        \draw (-2.0,-3.5) -- (-0.5,-3.3);
+        
+        \fill (3.0,3.5) circle (2pt);
+        \draw (3.0,3.5) circle (2.5);
+        \node[anchor=west] at (3.0,3.5) {\small 3};
+    \end{tikzpicture}
+    \caption{Illustration of a RGG with $ \mathcal{X}= [-5,5]\times[-5,5] \subset \mathbb{R}^2$ and radius $r=2.5$ (with respect to the Euclidean distance), where nodes 1 and 2 (corresponding to $(-2.0, -3.5)^T$ and $(-0.5, -3.3)^T$, within radius $r=2.5$) are connected, while node 3 (corresponding to $(3.0, 3.5)^T$) has no other node within that distance.}
+    \label{fig:rgg}
+    \end{figure}
+    More precisely, for a node set $i=1, \,\ldots, \,n$, each node $i$ is assigned to a random position ${\bf x}^{(i)} \in \mathcal{X}$, typically as realizations of independent and identically distributed (i.i.d.) random variables (RVs) taking values in a set $\mathcal{X}$, which together with a metric forms a metric space; often, the metric may be induced by a a norm. A specific realization of a RGG contains an edge $\{i,i'\}$ if and only if their distance with respect to the metric is smaller than some threshold, i.e., when $d({\bf x}^{(i)},{\bf x}^{(i')})\leq r$ for some threshold $r>0$, as illustrated in Figure \ref{fig:rgg}.
+         \\
+        See also: graph, stochastic block model (SBM), Erd\H{o}s–R\'enyi (ER) graph.},
+    first={Random geometric (RGG) graph},
+    text={RGG}
+}
